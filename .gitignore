@@ -6,6 +6,10 @@
 *.war
 *.ear
 
+# .idea files
+.idea/workspace.xml
+.idea/gradle.xml
+
 ### Gradle ###
 .gradle
 /build/

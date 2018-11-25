@@ -37,4 +37,14 @@ public class SchoolTest
         Course course = new Course("Course name", LocalDate.of(2018, 2, 1), LocalDate.of(2018, 3, 1));
         school.addCourse(course);
     }
+
+    @Test(expected = DuplicateCourseException.class)
+    public void DuplicateCourseExceptionTest() throws DuplicateCourseException, SchoolCourseException, SchoolOpeningDateException, SchoolNameException, CourseDateException
+    {
+        School school = new School("School name", LocalDate.of(2017, 1, 1));
+        Course course1 = new Course("Course name", LocalDate.of(2018, 2, 1), LocalDate.of(2018, 3, 1));
+        Course course2 = new Course("Course name", LocalDate.of(2018, 3, 1), LocalDate.of(2018, 4, 1));
+        school.addCourse(course1);
+        school.addCourse(course2);
+    }
 }

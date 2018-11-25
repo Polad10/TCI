@@ -57,4 +57,24 @@ public class SchoolTest
 
         Assert.assertSame(course, school.getCourse("Course name"));
     }
+
+    @Test
+    public void getCourseNamesTest() throws SchoolOpeningDateException, SchoolNameException, CourseDateException, SchoolCourseException, DuplicateCourseException
+    {
+        String courseName1 = "course1";
+        String courseName2 = "course2";
+
+        ArrayList<String> expectedCourseNames = new ArrayList<String>();
+        expectedCourseNames.add(courseName1);
+        expectedCourseNames.add(courseName2);
+
+        School school = new School("School name", LocalDate.of(2018, 1, 1));
+        Course course1 = new Course(courseName1, LocalDate.of(2018, 2, 1), LocalDate.of(2018, 3, 1));
+        Course course2 = new Course(courseName2, LocalDate.of(2018, 3, 1), LocalDate.of(2018, 4, 1));
+
+        school.addCourse(course1);
+        school.addCourse(course2);
+
+        Assert.assertEquals(expectedCourseNames, school.getCourseNames());
+    }
 }

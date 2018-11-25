@@ -33,7 +33,7 @@ public class School
         this.openingDate = openingDate;
     }
 
-    public void addCourse()
+    public void addCourse(Course course)
     {
 
     }

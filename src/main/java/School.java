@@ -34,11 +34,16 @@ public class School
         this.openingDate = openingDate;
     }
 
-    public void addCourse(Course course) throws SchoolCourseException
+    public void addCourse(Course course) throws SchoolCourseException, DuplicateCourseException
     {
         if(openingDate.compareTo(course.getStartDate()) >= 0)
         {
             throw new SchoolCourseException("Course begin dates should be after the school begin date");
+        }
+
+        if(getCourse(course.getName()) != null)
+        {
+            throw new DuplicateCourseException("The name of the course within a school should be unique");
         }
 
         courses.add(course);
@@ -46,6 +51,14 @@ public class School
 
     public Course getCourse(String courseName)
     {
+        for (Course course : courses)
+        {
+            if(course.getName().equals(courseName))
+            {
+                return course;
+            }
+        }
+
         return null;
     }
 

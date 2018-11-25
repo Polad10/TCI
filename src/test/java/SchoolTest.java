@@ -20,7 +20,7 @@ public class SchoolTest
     }
 
     @Test
-    public void addCourseTest() throws SchoolOpeningDateException, SchoolNameException, CourseDateException, SchoolCourseException
+    public void addCourseTest() throws SchoolOpeningDateException, SchoolNameException, CourseDateException, SchoolCourseException, DuplicateCourseException
     {
         School school = new School("School name", LocalDate.of(2018, 1, 1));
         Course course = new Course("Course name", LocalDate.of(2018, 2, 1), LocalDate.of(2018, 3, 1));
@@ -31,7 +31,7 @@ public class SchoolTest
     }
 
     @Test(expected = SchoolCourseException.class)
-    public void SchoolCourseExceptionTest() throws SchoolCourseException, SchoolOpeningDateException, SchoolNameException, CourseDateException
+    public void SchoolCourseExceptionTest() throws SchoolCourseException, SchoolOpeningDateException, SchoolNameException, CourseDateException, DuplicateCourseException
     {
         School school = new School("School name", LocalDate.of(2019, 1, 1));
         Course course = new Course("Course name", LocalDate.of(2018, 2, 1), LocalDate.of(2018, 3, 1));

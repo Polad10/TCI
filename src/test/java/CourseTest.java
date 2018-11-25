@@ -12,7 +12,7 @@ public class CourseTest {
     {
         LocalDate startDate = LocalDate.of(2018, Month.JANUARY, 1);
         LocalDate endDate = LocalDate.of(2019, Month.JANUARY, 1);
-        Course course = new Course(startDate, endDate);
+        Course course = new Course("Course name", startDate, endDate);
 
         Assert.assertTrue(course.getEndDate().compareTo(course.getStartDate()) > 0);
     }
@@ -22,7 +22,7 @@ public class CourseTest {
     {
         LocalDate startDate = LocalDate.of(2019, Month.JANUARY, 1);
         LocalDate endDate = LocalDate.of(2018, Month.JANUARY, 1);
-        Course course = new Course(startDate, endDate);
+        Course course = new Course("Course name", startDate, endDate);
     }
 
 }

@@ -10,4 +10,10 @@ public class SchoolTest
     {
         School school = new School(null, LocalDate.of(2018, 1, 1));
     }
+
+    @Test(expected = SchoolOpeningDateException.class)
+    public void SchoolOpeningDateExceptionTest() throws SchoolOpeningDateException, SchoolNameException
+    {
+        School school = new School("School Name", null);
+    }
 }

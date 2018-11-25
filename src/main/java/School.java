@@ -5,12 +5,13 @@ public class School
 {
     private String name;
     private LocalDate openingDate;
-    ArrayList<Course> courses;
+    private ArrayList<Course> courses;
 
     public School(String name, LocalDate openingDate) throws SchoolNameException, SchoolOpeningDateException
     {
         setName(name);
         setOpeningDate(openingDate);
+        courses = new ArrayList<Course>();
     }
 
     private void setName(String name) throws SchoolNameException
@@ -35,7 +36,7 @@ public class School
 
     public void addCourse(Course course)
     {
-
+        courses.add(course);
     }
 
     public Course getCourse(String courseName)
@@ -50,6 +51,6 @@ public class School
 
     public ArrayList<Course> getAllCourses()
     {
-        return null;
+        return courses;
     }
 }

@@ -34,8 +34,13 @@ public class School
         this.openingDate = openingDate;
     }
 
-    public void addCourse(Course course)
+    public void addCourse(Course course) throws SchoolCourseException
     {
+        if(openingDate.compareTo(course.getStartDate()) >= 0)
+        {
+            throw new SchoolCourseException("Course begin dates should be after the school begin date");
+        }
+
         courses.add(course);
     }
 

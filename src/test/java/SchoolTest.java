@@ -47,4 +47,14 @@ public class SchoolTest
         school.addCourse(course1);
         school.addCourse(course2);
     }
+
+    @Test
+    public void getCourseTest() throws SchoolOpeningDateException, SchoolNameException, CourseDateException, SchoolCourseException, DuplicateCourseException
+    {
+        School school = new School("School name", LocalDate.of(2018, 1, 1));
+        Course course = new Course("Course name", LocalDate.of(2018, 2, 1), LocalDate.of(2018, 3, 1));
+        school.addCourse(course);
+
+        Assert.assertSame(course, school.getCourse("Course name"));
+    }
 }

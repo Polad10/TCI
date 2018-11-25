@@ -64,7 +64,14 @@ public class School
 
     public ArrayList<String> getCourseNames()
     {
-        return null;
+        ArrayList<String> courseNames = new ArrayList<>();
+
+        for(Course course : courses)
+        {
+            courseNames.add(course.getName());
+        }
+
+        return courseNames;
     }
 
     public ArrayList<Course> getAllCourses()

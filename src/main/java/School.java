@@ -7,9 +7,19 @@ public class School
     private LocalDate openingDate;
     ArrayList<Course> courses;
 
-    public School(String name, LocalDate openingDate)
+    public School(String name, LocalDate openingDate) throws SchoolNameException
     {
+        setName(name);
+    }
 
+    private void setName(String name) throws SchoolNameException
+    {
+        if(name == null)
+        {
+            throw new SchoolNameException("School name is not allowed to be null");
+        }
+
+        this.name = name;
     }
 
     public void addCourse()

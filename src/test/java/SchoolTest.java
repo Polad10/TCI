@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 public class SchoolTest
 {
     @Test(expected = SchoolNameException.class)
-    public void SchoolNameExceptionTest() throws SchoolNameException
+    public void SchoolNameExceptionTest() throws SchoolNameException, SchoolOpeningDateException
     {
         School school = new School(null, LocalDate.of(2018, 1, 1));
     }

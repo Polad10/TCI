@@ -110,4 +110,10 @@ public class BasicStatisticTest
 
         Assert.assertEquals(lowMiddle, basicStatistic.getMedian(), 0);
     }
+
+    @Test(expected = NoDataItemsException.class)
+    public void getMedianExceptionTest() throws NoDataItemsException
+    {
+        basicStatistic.getMedian();
+    }
 }

@@ -96,7 +96,7 @@ public class BasicStatistic implements BasicStatisticInterface
         else
         {
             sortData();
-            
+
             int lastIndex = dataSize - 1;
             int middleIndex = lastIndex / 2;
 

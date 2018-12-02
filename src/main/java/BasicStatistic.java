@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * very simple implementation of the BasicStatisticInterface
@@ -86,13 +87,37 @@ public class BasicStatistic implements BasicStatisticInterface
     @Override
     public double getMedian() throws NoDataItemsException
     {
-        double rv = 0.0;
-        return rv;
+        int dataSize = data.size();
+
+        if(dataSize == 0)
+        {
+            throw new NoDataItemsException();
+        }
+        else
+        {
+            sortData();
+            
+            int lastIndex = dataSize - 1;
+            int middleIndex = lastIndex / 2;
+
+            return data.get(middleIndex);
+        }
     }
 
     @Override
     public double getStandardDeviation() throws NoDataItemsException {
         double rv = 0.0;
         return rv;
+    }
+
+    private void sortData()
+    {
+        data.sort(new Comparator<Double>() {
+            @Override
+            public int compare(Double val1, Double val2)
+            {
+                return val1.compareTo(val2);
+            }
+        });
     }
 }

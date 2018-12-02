@@ -1,11 +1,22 @@
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+@RunWith(JUnitParamsRunner.class)
 public class BasicStatisticTest
 {
-    BasicStatistic basicStatistic = new BasicStatistic();
+    private BasicStatistic basicStatistic;
+
+    @Before
+    public void setUp()
+    {
+        this.basicStatistic = new BasicStatistic();
+    }
 
     @Test
     public void addDoubleToDataTest()
@@ -42,54 +53,61 @@ public class BasicStatisticTest
         basicStatistic.addDoubleToData(val2);
         basicStatistic.addDoubleToData(val3);
 
-        Assert.assertEquals(6, basicStatistic.sum(), Double.POSITIVE_INFINITY);
+        Assert.assertEquals(6, basicStatistic.sum(), 0);
+    }
+
+    private Double[][] sortedValueProvider()
+    {
+        return new Double[][] {{1.0, 2.0, 3.0, 4.0}, {3.0, 5.0, 7.0, 9.0}, {10.0, 15.0, 20.0, 25.0}};
     }
 
     @Test
-    public void highestValueNormalTest() throws NoDataItemsException
+    @Parameters(method="sortedValueProvider")
+    public void highestValueNormalTest(double smallest, double lowMiddle, double highMiddle, double highest) throws NoDataItemsException
     {
-        basicStatistic.addDoubleToData(1.0);
-        basicStatistic.addDoubleToData(2.0);
-        basicStatistic.addDoubleToData(3.0);
+        basicStatistic.addDoubleToData(smallest);
+        basicStatistic.addDoubleToData(lowMiddle);
+        basicStatistic.addDoubleToData(highMiddle);
+        basicStatistic.addDoubleToData(highest);
 
-        Assert.assertEquals(3.0, basicStatistic.highestValue(), Double.POSITIVE_INFINITY);
+        Assert.assertEquals(highest, basicStatistic.highestValue(), 0);
+    }
+
+    @Test(expected = NoDataItemsException.class)
+    public void highestValueExceptionTest() throws NoDataItemsException
+    {
+        basicStatistic.highestValue();
     }
 
     @Test
-    public void highestValueExceptionTest()
+    @Parameters(method = "sortedValueProvider")
+    public void getMeanNormalTest(double smallest, double lowMiddle, double highMiddle, double highest) throws NoDataItemsException
     {
-        try
-        {
-            basicStatistic.highestValue();
-            fail();
-        }
-        catch (NoDataItemsException ex)
-        {
+        double expected = (smallest + lowMiddle + highMiddle + highest) / 4.0;
 
-        }
+        basicStatistic.addDoubleToData(smallest);
+        basicStatistic.addDoubleToData(lowMiddle);
+        basicStatistic.addDoubleToData(highMiddle);
+        basicStatistic.addDoubleToData(highest);
+
+        Assert.assertEquals(expected, basicStatistic.getMean(), 0);
+    }
+
+    @Test(expected = NoDataItemsException.class)
+    public void getMeanExceptionTest() throws NoDataItemsException
+    {
+        basicStatistic.getMean();
     }
 
     @Test
-    public void getMeanNormalTest() throws NoDataItemsException
+    @Parameters(method = "sortedValueProvider")
+    public void getMedianNormalTest(double smallest, double lowMiddle, double highMiddle, double highest) throws NoDataItemsException
     {
-        basicStatistic.addDoubleToData(1.0);
-        basicStatistic.addDoubleToData(2.0);
-        basicStatistic.addDoubleToData(3.0);
+        basicStatistic.addDoubleToData(smallest);
+        basicStatistic.addDoubleToData(lowMiddle);
+        basicStatistic.addDoubleToData(highMiddle);
+        basicStatistic.addDoubleToData(highest);
 
-        Assert.assertEquals(2.0, basicStatistic.getMean(), Double.POSITIVE_INFINITY);
-    }
-
-    @Test
-    public void getMeanExceptionTest()
-    {
-        try
-        {
-            basicStatistic.getMean();
-            fail();
-        }
-        catch (NoDataItemsException ex)
-        {
-
-        }
+        Assert.assertEquals(lowMiddle, basicStatistic.getMedian(), 0);
     }
 }

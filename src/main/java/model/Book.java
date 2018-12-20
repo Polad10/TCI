@@ -26,14 +26,4 @@ public class Book extends Media
     {
 
     }
-
-    /**
-     * This method converts this Book object into json format.
-     * @return The Json representation of this Book object.
-     */
-    @Override
-    public String toJson()
-    {
-        return null;
-    }
 }

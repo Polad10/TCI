@@ -20,14 +20,4 @@ public class Music extends Media
     {
 
     }
-
-    /**
-     * This method converts this Music object into json format.
-     * @return The Json representation of this Music object.
-     */
-    @Override
-    public String toJson()
-    {
-        return null;
-    }
 }

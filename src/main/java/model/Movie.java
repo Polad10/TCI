@@ -26,14 +26,4 @@ public class Movie extends Media
     {
 
     }
-
-    /**
-     * This method converts this Movie object into json format.
-     * @return The Json representation of this Movie object.
-     */
-    @Override
-    public String toJson()
-    {
-        return null;
-    }
 }

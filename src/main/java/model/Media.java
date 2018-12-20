@@ -14,10 +14,4 @@ public abstract class Media
     protected String genre;
     protected String format;
     protected int year;
-
-    /**
-     * This method must be overwritten by inherited classes.
-     * @return The Json representation of this object.
-     */
-    public abstract String toJson();
 }

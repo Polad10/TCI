@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 /**
  * This class processes the REST API calls for the movie resources.
  *
- * @author
+ * @author Ibrahim
  * @version 1.0
  * @since   2018-12-19
  */
@@ -26,6 +26,8 @@ public class MovieResource
     {
         return null;
     }
+
+
 
     /**
      * This method makes use of a Spider object to retrieve all the movies, which match the required property value, from the website.

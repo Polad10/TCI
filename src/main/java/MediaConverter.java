@@ -14,7 +14,7 @@ public class MediaConverter
      * This method converts the media objects into json format.
      * @return The Json representation of the media object.
      */
-    public String toJson(Media mediaObject)
+    public static String toJson(Media mediaObject)
     {
         return null;
     }

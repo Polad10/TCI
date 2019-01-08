@@ -7,7 +7,7 @@ public class SpiderLegTest
 {
 
     @Test
-    public void Testing_connection_with_GivingURL()
+    public void Testing_connection_with_GivingURL_Must_return_true()
     {
         SpiderLeg spiderLeg = new SpiderLeg();
 

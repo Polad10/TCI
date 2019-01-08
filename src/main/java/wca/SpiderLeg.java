@@ -51,7 +51,18 @@ public class SpiderLeg
 
     public void crawl(String url)
     {
-       //
+        try
+        {
+            Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
+            Document htmlDocument = connection.get();
+            this.htmlDocument = htmlDocument;
+            isConnected = true;
+
+        }
+        catch(IOException ioe)
+        {
+            System.out.println("Error in out HTTP request " + ioe);
+        }
 
     }
 

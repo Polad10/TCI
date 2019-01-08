@@ -64,6 +64,8 @@ public class SpiderLeg
                 this.htmlDocument = htmlDocument;
                 isConnected = true;
 
+
+
             }
             catch(IOException ioe)
             {
@@ -80,7 +82,7 @@ public class SpiderLeg
      */
     public ArrayList<String> getLinks()
     {
-        return null;
+        return links;
     }
 
     /**

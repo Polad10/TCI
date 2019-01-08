@@ -49,20 +49,28 @@ public class SpiderLeg
         return isConnected;
     }
 
-    public void crawl(String url)
+    public void crawl(String url) throws CustomException
     {
-        try
+        if (url=="")
         {
-            Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
-            Document htmlDocument = connection.get();
-            this.htmlDocument = htmlDocument;
-            isConnected = true;
+            throw new CustomException("URL IS NULL");
+        }
+        else
+        {
+            try
+            {
+                Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
+                Document htmlDocument = connection.get();
+                this.htmlDocument = htmlDocument;
+                isConnected = true;
 
+            }
+            catch(IOException ioe)
+            {
+                System.out.println("Error in out HTTP request " + ioe);
+            }
         }
-        catch(IOException ioe)
-        {
-            System.out.println("Error in out HTTP request " + ioe);
-        }
+
 
     }
 

@@ -14,4 +14,26 @@ public abstract class Media
     protected String genre;
     protected String format;
     protected int year;
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getGenre()
+    {
+        return genre;
+    }
+
+    public String getFormat()
+    {
+        return format;
+    }
+
+    public int getYear()
+    {
+        return year;
+    }
 }
+
+

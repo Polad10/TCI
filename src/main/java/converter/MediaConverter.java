@@ -1,3 +1,6 @@
+package converter;
+
+import com.owlike.genson.Genson;
 import model.Media;
 
 /**
@@ -16,6 +19,7 @@ public class MediaConverter
      */
     public static String toJson(Media mediaObject)
     {
-        return null;
+        Genson genson = new Genson();
+        return genson.serialize(mediaObject);
     }
 }

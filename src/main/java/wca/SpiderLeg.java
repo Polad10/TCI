@@ -33,6 +33,7 @@ public class SpiderLeg
      */
     public SpiderLeg()
     {
+        links = new ArrayList<>();
 
     }
 
@@ -64,7 +65,11 @@ public class SpiderLeg
                 this.htmlDocument = htmlDocument;
                 isConnected = true;
 
-
+                Elements linksOnPage = htmlDocument.select("a[href]");
+                for(Element link : linksOnPage)
+                {
+                    this.links.add(link.absUrl("href"));
+                }
 
             }
             catch(IOException ioe)

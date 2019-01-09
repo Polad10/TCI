@@ -57,8 +57,10 @@ public class MediaConverterTest
     }
 
     @Test
-    public void getEmptyJsonForNullMedia()
+    public void getNullJsonForNullMedia()
     {
-
+        String mediaJson = MediaConverter.toJson(null);
+        System.out.println(mediaJson);
+        Assert.assertEquals("null", mediaJson);
     }
 }

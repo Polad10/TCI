@@ -42,7 +42,6 @@ public class MediaConverterTest
     {
         Music expectedMusic = new Music("name", "genre", "format", 1, "artist");
         String musicJson = MediaConverter.toJson(expectedMusic);
-        System.out.println(musicJson);
         Music actualMusic = genson.deserialize(musicJson, Music.class);
         Assert.assertEquals(expectedMusic, actualMusic);
     }

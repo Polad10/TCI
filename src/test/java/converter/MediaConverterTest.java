@@ -7,6 +7,7 @@ import com.owlike.genson.GensonBuilder;
 import com.owlike.genson.reflect.VisibilityFilter;
 import model.Book;
 import model.Media;
+import model.Movie;
 import model.Music;
 import org.junit.Assert;
 import org.junit.Test;
@@ -46,7 +47,18 @@ public class MediaConverterTest
     @Test
     public void getJsonOfMovie()
     {
+        ArrayList<String> writers = new ArrayList<String>();
+        writers.add("writer1");
+        writers.add("writer2");
 
+        ArrayList<String> stars = new ArrayList<String>();
+        stars.add("star1");
+        stars.add("star2");
+
+        Movie expectedMovie = new Movie("name", "genre", "format", 1, "director", writers, stars);
+        String movieJson = MediaConverter.toJson(expectedMovie);
+        Movie actualMovie = genson.deserialize(movieJson, Movie.class);
+        Assert.assertEquals(expectedMovie, actualMovie);
     }
 
     @Test

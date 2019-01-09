@@ -1,7 +1,11 @@
 package wca;
+import model.Book;
+import model.Movie;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import java.util.ArrayList;
 
 
 public class SpiderLegTest
@@ -40,8 +44,18 @@ public class SpiderLegTest
 
 
     @Test
-    public void extractExistentMovieFromDocument()
+    public void extractExistentMovieFromDocument()throws CustomException
     {
+        SpiderLeg spiderLeg = new SpiderLeg();
+        spiderLeg.crawl("http://i307047.hera.fhict.nl/");
+
+        ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> stars = new ArrayList<>();
+        String director = "Test";
+        Movie  movie = new Movie(director,list,stars);
+
+        Assert.assertEquals(spiderLeg.extractMovie(),movie);
+
 
     }
 

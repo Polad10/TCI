@@ -94,7 +94,9 @@ public class SpiderLeg
      * This method scraps the movie details from the last crawled page and creates a Movie object.
      * @return The Movie object.
      */
+
     public Movie extractMovie()
+
     {
         return null;
     }

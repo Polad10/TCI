@@ -33,8 +33,32 @@ public class Spider
      * @return All media products that were found.
      */
     public ArrayList<Media> search(String url)
+
     {
-        return null;
+        while(this.pagesVisited.size() < MAX_PAGES_TO_SEARCH)
+        {
+            String currentUrl;
+            SpiderLeg leg = new SpiderLeg();
+            if(this.pagesToVisit.isEmpty())
+            {
+                currentUrl = url;
+                this.pagesVisited.add(url);
+            }
+            else
+            {
+                currentUrl = this.nextUrl();
+            }
+
+            try
+            {
+                leg.crawl (currentUrl);
+            } catch (CustomException e) {
+                e.printStackTrace();
+            }
+            leg.extractMovie();
+            this.pagesToVisit.addAll(leg.getLinks());
+        }
+        System.out.println("\n**Done** Visited " + this.pagesVisited.size() + " web page(s)");
     }
 
     /**

@@ -33,6 +33,7 @@ public class Spider
      * @return All media products that were found.
      */
     public ArrayList<Media> search(String url)
+
     {
         return null;
     }

@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 /**
  * This class processes the REST API calls for the base address.
  *
- * @author
+ * @author Ibrahim
  * @version 1.0
  * @since   2018-12-19
  */

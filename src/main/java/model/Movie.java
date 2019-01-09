@@ -24,6 +24,51 @@ public class Movie extends Media
      */
     public Movie(String name, String genre, String format, int year, String director, ArrayList<String> writers, ArrayList<String> stars)
     {
+        this.name = name;
+        this.genre = genre;
+        this.format = format;
+        this.year = year;
+        this.director = director;
+        this.writers = writers;
+        this.stars = stars;
+    }
 
+    public String getDirector()
+    {
+        return director;
+    }
+
+    public ArrayList<String> getWriters()
+    {
+        return writers;
+    }
+
+    public ArrayList<String> getStars()
+    {
+        return stars;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if(o == this)
+        {
+            return true;
+        }
+
+        if(!(o instanceof Movie))
+        {
+            return false;
+        }
+
+        Movie movie = (Movie) o;
+
+        return name.compareTo(movie.name) == 0 &&
+                genre.compareTo(movie.genre) == 0 &&
+                format.compareTo(movie.format) == 0 &&
+                year == movie.year &&
+                director.compareTo(movie.director) == 0 &&
+                writers.equals(movie.writers) &&
+                stars.equals(movie.stars);
     }
 }

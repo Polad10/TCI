@@ -33,7 +33,14 @@ public class MediaConverterTest
     @Test
     public void getJsonOfBookAsMedia()
     {
+        ArrayList<String> authors = new ArrayList<String>();
+        authors.add("author1");
+        authors.add("author2");
 
+        Media expectedBook = new Book("name", "genre", "format", 1, authors, "publisher", "isbn");
+        String bookJson = MediaConverter.toJson(expectedBook);
+        Book actualBook = genson.deserialize(bookJson, Book.class);
+        Assert.assertEquals(expectedBook, actualBook);
     }
 
     @Test

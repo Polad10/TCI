@@ -16,7 +16,7 @@ public class Music extends Media
      * This is a Music constructor.
      * @param artist Artist of this music.
      */
-    public Music(String artist)
+    public Music(String name, String genre, String format, int year, String artist)
     {
 
     }

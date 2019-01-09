@@ -22,7 +22,7 @@ public class Movie extends Media
      * @param writers Writers of this movie.
      * @param stars Stars of this movie.
      */
-    public Movie(String director, ArrayList<String> writers, ArrayList<String> stars)
+    public Movie(String name, String genre, String format, int year, String director, ArrayList<String> writers, ArrayList<String> stars)
     {
 
     }

@@ -18,11 +18,11 @@ public class Book extends Media
 
     /**
      * This is a Book constructor.
-     * @param authos Authors of this book.
+     * @param authors Authors of this book.
      * @param publisher Publisher of this book.
      * @param isbn  Unique isbn number of this book.
      */
-    public Book(ArrayList<String> authos, String publisher, String isbn)
+    public Book(String name, String genre, String format, int year, ArrayList<String> authors, String publisher, String isbn)
     {
 
     }

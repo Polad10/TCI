@@ -64,7 +64,18 @@ public class MediaConverterTest
     @Test
     public void getJsonOfMovieAsMedia()
     {
+        ArrayList<String> writers = new ArrayList<String>();
+        writers.add("writer1");
+        writers.add("writer2");
 
+        ArrayList<String> stars = new ArrayList<String>();
+        stars.add("star1");
+        stars.add("star2");
+
+        Media expectedMovie = new Movie("name", "genre", "format", 1, "director", writers, stars);
+        String movieJson = MediaConverter.toJson(expectedMovie);
+        Movie actualMovie = genson.deserialize(movieJson, Movie.class);
+        Assert.assertEquals(expectedMovie, actualMovie);
     }
 
     @Test

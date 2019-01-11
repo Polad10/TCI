@@ -1,6 +1,16 @@
 package wca;
 
+import model.Book;
+import model.Media;
+import model.Movie;
+import model.Music;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.mockito.Mockito.*;
+
 import static org.junit.Assert.*;
 
 public class SpiderTest

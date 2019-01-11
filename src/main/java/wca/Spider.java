@@ -17,11 +17,17 @@ public class Spider
     private static final int MAX_PAGES_TO_SEARCH = 20;
     private HashSet<String> pagesVisited;
     private ArrayList<String> pagesToVisit;
+    private SpiderLeg spiderLeg;
 
     /**
      * This is a default constructor.
      */
     public Spider()
+    {
+
+    }
+
+    public Spider(SpiderLeg spiderLeg)
     {
 
     }

@@ -16,14 +16,39 @@ public class DocumentExtractor
 {
     private Document document;
 
+    /**
+     * This is the default constructor.
+     */
+    public DocumentExtractor()
+    {
+
+    }
+
+    /**
+     * This is the constructor which initializes the document.
+     * @param document
+     */
     public DocumentExtractor(Document document)
     {
 
     }
 
+    /**
+     * This method returns the document.
+     * @return The document.
+     */
     public Document getDocument()
     {
         return null;
+    }
+
+    /**
+     * This method sets the document.
+     * @param document The document to set.
+     */
+    public void setDocument(Document document)
+    {
+
     }
 
     /**

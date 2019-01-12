@@ -47,7 +47,14 @@ public class DocumentExtractor
     public ArrayList<String> getLinks()
 
     {
-        return  null;
+        Links = new ArrayList<>();
+        Elements linksOnPage = document.select("a[href]");
+        for(Element link : linksOnPage)
+        {
+            this.Links.add(link.absUrl("href"));
+        }
+
+        return Links;
     }
 
     /**

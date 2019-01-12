@@ -9,13 +9,25 @@ import org.junit.Test;
 public class MediaLibraryResourceTest
 {
     @Test
-    public void getJsonWithAllMediaProductsWhenProductsExist()
+    public void getAllResourcesUsesCorrectSearchInSpiderWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getEmptyJsonWhenProductsDoNotExist()
+    public void getAllResourcesUsesCorrectToJsonInMediaConverterWithCorrectArguments()
+    {
+
+    }
+
+    @Test
+    public void getAllResourcesReturnsReceivedJsonFromToJsonInMediaConverter()
+    {
+
+    }
+
+    @Test
+    public void getAllResourcesReturnsCorrectMessageFromReceivedException()
     {
 
     }

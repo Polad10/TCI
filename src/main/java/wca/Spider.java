@@ -34,7 +34,7 @@ public class Spider
 
     /**
      * This method searches for all media products.
-     * Internally it creates spider legs that make an HTTP request and parse the response (the web page).
+     * Internally it uses spider leg that makes an HTTP request and parse the response (the web page).
      * @param url The URL to search.
      * @return All media products that were found.
      */
@@ -46,7 +46,7 @@ public class Spider
 
     /**
      * This method searches for a particular type of media products.
-     * Internally it creates spider legs that make an HTTP request and parse the response (the web page).
+     * Internally it uses spider leg that makes an HTTP request and parse the response (the web page).
      * @param url The URL to search.
      * @param mediaType The media type to search for.
      * @return All media products that were found.
@@ -58,7 +58,7 @@ public class Spider
 
     /**
      * This method searches for a particular type of media products and with a specific property value.
-     * Internally it creates spider legs that make an HTTP request and parse the response (the web page).
+     * Internally it uses spider leg that makes an HTTP request and parse the response (the web page).
      * @param url The URL to search.
      * @param mediaType The media type to search for.
      * @param property Specific property to look at.

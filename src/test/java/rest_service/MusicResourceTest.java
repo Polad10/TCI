@@ -7,25 +7,49 @@ import static org.junit.Assert.*;
 public class MusicResourceTest
 {
     @Test
-    public void getJsonWithAllMusicsWhenMusicsExist()
+    public void getAllMusicsUsesCorrectSearchInSpiderWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getEmptyJsonWhenMusicsDoNotExist()
+    public void getAllMusicsUsesCorrectToJsonInMediaConverterWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getJsonWithSpecificMusicsWhenMusicsExist()
+    public void getMusicsByPropertyUsesCorrectSearchInSpiderWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getEmptyJsonWhenSpecificMusicsDoNotExist()
+    public void getMusicsByPropertyUsesCorrectToJsonInMediaConverterWithCorrectArguments()
+    {
+
+    }
+
+    @Test
+    public void getAllMusicsReturnsReceivedJsonFromToJsonInMediaConverter()
+    {
+
+    }
+
+    @Test
+    public void getMusicsByPropertyReturnsReceivedJsonFromToJsonInMediaConverter()
+    {
+
+    }
+
+    @Test
+    public void getAllMusicsReturnsCorrectMessageFromReceivedException()
+    {
+
+    }
+
+    @Test
+    public void getMusicsByPropertyReturnsCorrectMessageFromReceivedException()
     {
 
     }

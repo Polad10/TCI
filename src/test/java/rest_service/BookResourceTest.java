@@ -6,25 +6,49 @@ import static org.junit.Assert.*;
 public class BookResourceTest
 {
     @Test
-    public void getJsonWithAllBooksWhenBooksExist()
+    public void getAllBooksUsesCorrectSearchInSpiderWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getEmptyJsonWhenBooksDoNotExist()
+    public void getAllBooksUsesCorrectToJsonInMediaConverterWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getJsonWithSpecificBooksWhenBooksExist()
+    public void getBooksByPropertyUsesCorrectSearchInSpiderWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getEmptyJsonWhenSpecificBooksDoNotExist()
+    public void getBooksByPropertyUsesCorrectToJsonInMediaConverterWithCorrectArguments()
+    {
+
+    }
+
+    @Test
+    public void getAllBooksReturnsReceivedJsonFromToJsonInMediaConverter()
+    {
+
+    }
+
+    @Test
+    public void getBooksByPropertyReturnsReceivedJsonFromToJsonInMediaConverter()
+    {
+
+    }
+
+    @Test
+    public void getAllBooksReturnsCorrectMessageFromReceivedException()
+    {
+
+    }
+
+    @Test
+    public void getBooksByPropertyReturnsCorrectMessageFromReceivedException()
     {
 
     }

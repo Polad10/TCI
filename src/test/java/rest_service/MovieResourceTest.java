@@ -9,25 +9,49 @@ import org.junit.Test;
 public class MovieResourceTest
 {
     @Test
-    public void getJsonWithAllMoviesWhenMoviesExist()
+    public void getAllMoviesUsesCorrectSearchInSpiderWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getEmptyJsonWhenMoviesDoNotExist()
+    public void getAllMoviesUsesCorrectToJsonInMediaConverterWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getJsonWithSpecificMoviesWhenMoviesExist()
+    public void getMoviesByPropertyUsesCorrectSearchInSpiderWithCorrectArguments()
     {
 
     }
 
     @Test
-    public void getEmptyJsonWhenSpecificMoviesDoNotExist()
+    public void getMoviesByPropertyUsesCorrectToJsonInMediaConverterWithCorrectArguments()
+    {
+
+    }
+
+    @Test
+    public void getAllMoviesReturnsReceivedJsonFromToJsonInMediaConverter()
+    {
+
+    }
+
+    @Test
+    public void getMoviesByPropertyReturnsReceivedJsonFromToJsonInMediaConverter()
+    {
+
+    }
+
+    @Test
+    public void getAllMoviesReturnsCorrectMessageFromReceivedException()
+    {
+
+    }
+
+    @Test
+    public void getMoviesByPropertyReturnsCorrectMessageFromReceivedException()
     {
 
     }

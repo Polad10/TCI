@@ -99,7 +99,19 @@ public class MediaConverterTest
     @Test
     public void getNullJsonForNullMedia()
     {
-        String mediaJson = MediaConverter.toJson(null);
+        String mediaJson = MediaConverter.toJson((Media) null);
         Assert.assertEquals("null", mediaJson);
+    }
+
+    @Test
+    public void getJsonReturnsCorrectJsonForMediaList()
+    {
+
+    }
+
+    @Test
+    public void getJsonReturnsNullForEmptyMediaList()
+    {
+
     }
 }

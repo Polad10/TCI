@@ -19,9 +19,11 @@ public class DocumentExtractor
     public DocumentExtractor(Document document)
     {
 
+
     }
 
     public Document getDocument()
+
     {
         return null;
     }

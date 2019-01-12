@@ -52,12 +52,6 @@ public class SpiderLeg
                 Document htmlDocument = connection.get();
                 this.htmlDocument = htmlDocument;
 
-                Elements linksOnPage = htmlDocument.select("a[href]");
-                for(Element link : linksOnPage)
-                {
-                    this.links.add(link.absUrl("href"));
-                }
-
             }
             catch(IOException ioe)
             {

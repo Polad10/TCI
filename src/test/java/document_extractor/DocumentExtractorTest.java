@@ -1,14 +1,21 @@
 package document_extractor;
 
+import org.jsoup.nodes.Document;
 import org.junit.Test;
+import org.mockito.Mockito;
+import wca.SpiderLegException;
 
 import static org.junit.Assert.*;
 
 public class DocumentExtractorTest
 {
-    @Test
-    public void creatingDocumentExtractorWithInvalidDocumentThrowsInvalidDocumentException()
+    @Test (expected = DocumentExtractorExceptions.class)
+    public void creatingDocumentExtractorWithInvalidDocumentThrowsInvalidDocumentException() throws DocumentExtractorExceptions
     {
+        org.jsoup.nodes.Document mockDocu = Mockito.mock(Document.class);
+
+        DocumentExtractor documentExtractor = new DocumentExtractor(mockDocu);
+
 
     }
 

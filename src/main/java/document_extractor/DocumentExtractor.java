@@ -28,7 +28,11 @@ public class DocumentExtractor
             this.document= document;
         }
 
+    }
 
+    public void setDocument(Document doc)
+    {
+        this.document = doc;
     }
 
     public Document getDocument()

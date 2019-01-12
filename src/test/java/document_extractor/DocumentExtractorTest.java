@@ -16,7 +16,6 @@ public class DocumentExtractorTest
 
         DocumentExtractor documentExtractor = new DocumentExtractor(null);
 
-
     }
 
     @Test

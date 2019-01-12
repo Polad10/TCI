@@ -16,8 +16,13 @@ public class DocumentExtractor
 {
     private Document document;
 
-    public DocumentExtractor(Document document)
+    public DocumentExtractor(Document document) throws DocumentExtractorExceptions
     {
+
+        if(document == null)
+        {
+            throw new DocumentExtractorExceptions("Giving Document is null");
+        }
 
 
     }

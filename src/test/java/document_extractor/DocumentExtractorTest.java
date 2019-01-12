@@ -14,7 +14,7 @@ public class DocumentExtractorTest
     {
         org.jsoup.nodes.Document mockDocu = Mockito.mock(Document.class);
 
-        DocumentExtractor documentExtractor = new DocumentExtractor(mockDocu);
+        DocumentExtractor documentExtractor = new DocumentExtractor(null);
 
 
     }

@@ -30,10 +30,6 @@ public class DocumentExtractor
 
     }
 
-    public void setDocument(Document doc)
-    {
-        this.document = doc;
-    }
 
     public Document getDocument()
 

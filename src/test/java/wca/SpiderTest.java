@@ -57,4 +57,19 @@ public class SpiderTest
 
         verify(documentExtractor).setDocument(document);
     }
+
+    @Test
+    public void searchParticularMediaTypeUsesSetDocumentInDocumentExtractorWithCorrectArguments()
+    {
+
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
+
+        Document document = new Document("url");
+        when(spiderLeg.crawl("url")).thenReturn(document);
+        spider.search("url", "mediaType");
+
+        verify(documentExtractor).setDocument(document);
+    }
 }

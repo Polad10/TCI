@@ -31,4 +31,15 @@ public class SpiderTest
 
         verify(spiderLeg).crawl("url");
     }
+
+    @Test
+    public void searchParrticularMediaTypeAndMediaPropertyUsesCrawlInSpiderLegWithCorrectArguments()
+    {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
+        Spider spider = new Spider(spiderLeg);
+
+        spider.search("url", "mediaType", "property", "value");
+
+        verify(spiderLeg).crawl("url");
+    }
 }

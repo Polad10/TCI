@@ -141,4 +141,15 @@ public class SpiderTest
 
         verify(documentExtractor).extractMedia();
     }
+
+    @Test
+    public void searchParticularMediaTypeAndMediaPropertyUsesExtractMediaInDocumentExtractor()
+    {
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(documentExtractor);
+
+        spider.search("url", "mediaType", "property", "propertyValue");
+
+        verify(documentExtractor).extractMedia();
+    }
 }

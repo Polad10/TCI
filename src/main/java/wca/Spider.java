@@ -70,9 +70,7 @@ public class Spider
      */
     public ArrayList<Media> search(String url)
     {
-        Document document = spiderLeg.crawl(url);
-        documentExtractor.setDocument(document);
-        ArrayList<String> links = documentExtractor.getLinks();
+        crawlLink(url);
         Media media = documentExtractor.extractMedia();
 
         return null;
@@ -87,9 +85,7 @@ public class Spider
      */
     public ArrayList<Media> search(String url, String mediaType)
     {
-        Document document = spiderLeg.crawl(url);
-        documentExtractor.setDocument(document);
-        ArrayList<String> links = documentExtractor.getLinks();
+        crawlLink(url);
         Media media = documentExtractor.extractMedia();
 
         return null;
@@ -106,12 +102,17 @@ public class Spider
      */
     public ArrayList<Media> search(String url, String mediaType, String property, String propertyValue)
     {
-        Document document = spiderLeg.crawl(url);
-        documentExtractor.setDocument(document);
-        ArrayList<String> links = documentExtractor.getLinks();
+        crawlLink(url);
         Media media = documentExtractor.extractMedia();
 
         return null;
+    }
+
+    private void crawlLink(String url)
+    {
+        Document document = spiderLeg.crawl(url);
+        documentExtractor.setDocument(document);
+        ArrayList<String> links = documentExtractor.getLinks();
     }
 
     /**

@@ -30,9 +30,14 @@ public class SpiderLeg
      * @param url The URL to crawl.
      * @return The gathered html page.
      */
-    public Document crawl(String url)
+    public Document crawl(String url) throws SpiderLegException
 
     {
+        if (url=="")
+        {
+            throw new SpiderLegException ("URL IS INVALID!");
+        }
+
         return null;
     }
 }

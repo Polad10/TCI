@@ -13,17 +13,16 @@ import java.util.ArrayList;
 
 public class SpiderLegTest
 {
-    @Test
-    public void crawlThrowsPageNotFoundExceptionForInvalidUrl()
+    @Test (expected = SpiderLegException.class)
+    public void crawlThrowsPageNotFoundExceptionForInvalidUrl()  throws SpiderLegException
     {
         SpiderLeg spiderLeg = new SpiderLeg();
 
-        String URL = "http://i307047.hera.fhict.nl/";
+        String URL = "";
         String Path = "/Users/Bram/TCT/GitHub/Git version2/TCI/src/main/sample_site/index.html";
         Document expectedReturnDocu = Mockito.mock(Document.class);
 
-        Assert.assertEquals(spiderLeg.crawl(Path),expectedReturnDocu);
-
+        spiderLeg.crawl(URL);
     }
 
     @Test

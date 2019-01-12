@@ -23,6 +23,10 @@ public class DocumentExtractor
         {
             throw new DocumentExtractorExceptions("Giving Document is null");
         }
+        else
+        {
+            this.document= document;
+        }
 
 
     }

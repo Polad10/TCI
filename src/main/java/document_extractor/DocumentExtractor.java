@@ -34,7 +34,7 @@ public class DocumentExtractor
     public Document getDocument()
 
     {
-        return null;
+        return document;
     }
 
     /**

@@ -1,5 +1,6 @@
 package wca;
 
+import document_extractor.DocumentExtractor;
 import org.jsoup.nodes.Document;
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,5 +42,19 @@ public class SpiderTest
         spider.search("url", "mediaType", "property", "value");
 
         verify(spiderLeg).crawl("url");
+    }
+
+    @Test
+    public void searchAllMediaUsesSetDocumentInDocumentExtractorWithCorrectArguments()
+    {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
+
+        Document document = new Document("url");
+        when(spiderLeg.crawl("url")).thenReturn(document);
+        spider.search("url");
+
+        verify(documentExtractor).setDocument(document);
     }
 }

@@ -244,6 +244,23 @@ public class SpiderTest
         Assert.assertEquals(expectedMedias, actualMedias);
     }
 
+    @Test
+    @Parameters(method = "oneOfEachMediaTypeProvider")
+    public void searchMovieMediaTypeReturnsAllMoviesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList)
+    {
+        ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(mediaList.get(2)));
+
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(documentExtractor);
+
+        when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2")));
+        when(documentExtractor.extractMedia()).thenReturn(mediaList.get(0), mediaList.get(1), mediaList.get(2));
+
+        ArrayList<Media> actualMedias = spider.search("url", "movie");
+
+        Assert.assertEquals(expectedMedias, actualMedias);
+    }
+
     private Object[] fiveMixedTypeMediaProvider()
     {
         Book book1 = new Book("name1", "genre1", "format1", 1, new ArrayList<>(Collections.singletonList("author1")), "publisher1", "isbn1");

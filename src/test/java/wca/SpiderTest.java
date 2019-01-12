@@ -179,6 +179,37 @@ public class SpiderTest
         Assert.assertEquals(mediaList, actualMedias);
     }
 
+    @Test
+    @Parameters(method = "fiveSingleTypeMediaProvider")
+    public void searchParticularMediaTypeReturnsAllNonDuplicateMediaReceivedFromDocumentExtractor(List<Media> mediaList)
+    {
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(documentExtractor);
+
+        when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2", "url3", "url4", "url5", "url6")));
+        when(documentExtractor.extractMedia()).thenReturn(mediaList.get(0)).thenReturn(mediaList.get(1)).thenReturn(mediaList.get(2)).thenReturn(mediaList.get(3))
+                .thenReturn(mediaList.get(4)).thenReturn(mediaList.get(1));
+
+        String mediaType;
+
+        if(mediaList.get(0) instanceof Book)
+        {
+            mediaType = "book";
+        }
+        else if(mediaList.get(0) instanceof Music)
+        {
+            mediaType = "music";
+        }
+        else
+        {
+            mediaType = "movie";
+        }
+
+        ArrayList<Media> actualMedias = spider.search("url", mediaType);
+
+        Assert.assertEquals(mediaList, actualMedias);
+    }
+
     private Object[] fiveMixedTypeMediaProvider()
     {
         Book book1 = new Book("name1", "genre1", "format1", 1, new ArrayList<>(Collections.singletonList("author1")), "publisher1", "isbn1");
@@ -188,5 +219,30 @@ public class SpiderTest
         Movie movie1 = new Movie("name1", "genre1", "format1", 1, "director1", new ArrayList<>(Arrays.asList("writer1", "writer2")), new ArrayList<>(Arrays.asList("star1", "star2")));
 
         return new Object[] {Arrays.asList(book1, book2, music1, music2, movie1)};
+    }
+
+    private Object[] fiveSingleTypeMediaProvider()
+    {
+        Book book1 = new Book("name1", "genre1", "format1", 1, new ArrayList<>(Collections.singletonList("author1")), "publisher1", "isbn1");
+        Book book2 = new Book("name2", "genre2", "format2", 1, new ArrayList<>(Collections.singletonList("author2")), "publisher2", "isbn2");
+        Book book3 = new Book("name3", "genre3", "format3", 1, new ArrayList<>(Collections.singletonList("author3")), "publisher3", "isbn3");
+        Book book4 = new Book("name4", "genre4", "format4", 1, new ArrayList<>(Collections.singletonList("author4")), "publisher4", "isbn4");
+        Book book5 = new Book("name5", "genre5", "format5", 1, new ArrayList<>(Collections.singletonList("author5")), "publisher5", "isbn5");
+
+        Music music1 = new Music("name1", "genre1", "format1", 1, "artist1");
+        Music music2 = new Music("name2", "genre2", "format2", 2, "artist2");
+        Music music3 = new Music("name3", "genre3", "format3", 2, "artist3");
+        Music music4 = new Music("name4", "genre4", "format4", 2, "artist4");
+        Music music5 = new Music("name5", "genre5", "format5", 2, "artist5");
+
+        Movie movie1 = new Movie("name1", "genre1", "format1", 1, "director1", new ArrayList<>(Arrays.asList("writer1", "writer2")), new ArrayList<>(Arrays.asList("star1", "star6")));
+        Movie movie2 = new Movie("name2", "genre2", "format2", 1, "director2", new ArrayList<>(Arrays.asList("writer3", "writer4")), new ArrayList<>(Arrays.asList("star2", "star7")));
+        Movie movie3 = new Movie("name3", "genre3", "format3", 1, "director3", new ArrayList<>(Arrays.asList("writer5", "writer6")), new ArrayList<>(Arrays.asList("star3", "star8")));
+        Movie movie4 = new Movie("name4", "genre4", "format4", 1, "director4", new ArrayList<>(Arrays.asList("writer7", "writer8")), new ArrayList<>(Arrays.asList("star4", "star9")));
+        Movie movie5 = new Movie("name5", "genre5", "format5", 1, "director5", new ArrayList<>(Arrays.asList("writer9", "writer10")), new ArrayList<>(Arrays.asList("star5", "star10")));
+
+        return new Object[] { Arrays.asList(book1, book2, book3, book4, book5),
+                Arrays.asList(music1, music2, music3, music4, music5),
+                Arrays.asList(movie1, movie2, movie3, movie4, movie5) };
     }
 }

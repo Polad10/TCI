@@ -108,6 +108,11 @@ public class Spider
         return null;
     }
 
+    /**
+     * This method sets updates the document in documentExtractor by using spiderLeg object
+     * and it also retrieves all the links to visit next.
+     * @param url URL to crawl.
+     */
     private void crawlLink(String url)
     {
         Document document = spiderLeg.crawl(url);

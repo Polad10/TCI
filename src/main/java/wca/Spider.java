@@ -2,6 +2,8 @@ package wca;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import document_extractor.DocumentExtractor;
 import model.Media;
 import org.jsoup.nodes.Document;
 
@@ -19,6 +21,7 @@ public class Spider
     private HashSet<String> pagesVisited;
     private ArrayList<String> pagesToVisit;
     private SpiderLeg spiderLeg;
+    private DocumentExtractor documentExtractor;
 
     /**
      * This is a default constructor.
@@ -28,9 +31,23 @@ public class Spider
 
     }
 
+    /**
+     * This constructor initializes the spiderLeg with received object and creates documentExtractor without document.
+     * @param spiderLeg SpiderLeg object to set.
+     */
     public Spider(SpiderLeg spiderLeg)
     {
         this.spiderLeg = spiderLeg;
+    }
+
+    /**
+     * This constructor initializes spiderLeg and documentExtractor.
+     * @param spiderLeg SpiderLeg object to set.
+     * @param documentExtractor DocumentExtractor object to set.
+     */
+    public Spider(SpiderLeg spiderLeg, DocumentExtractor documentExtractor)
+    {
+
     }
 
     /**

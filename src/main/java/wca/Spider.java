@@ -38,6 +38,7 @@ public class Spider
     public Spider(SpiderLeg spiderLeg)
     {
         this.spiderLeg = spiderLeg;
+        this.documentExtractor = new DocumentExtractor();
     }
 
     /**
@@ -47,7 +48,8 @@ public class Spider
      */
     public Spider(SpiderLeg spiderLeg, DocumentExtractor documentExtractor)
     {
-
+        this.spiderLeg = spiderLeg;
+        this.documentExtractor = documentExtractor;
     }
 
     /**
@@ -59,6 +61,7 @@ public class Spider
     public ArrayList<Media> search(String url)
     {
         Document document = spiderLeg.crawl(url);
+        documentExtractor.setDocument(document);
         return null;
     }
 

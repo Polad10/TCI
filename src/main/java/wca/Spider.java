@@ -3,6 +3,7 @@ package wca;
 import java.util.ArrayList;
 import java.util.HashSet;
 import model.Media;
+import org.jsoup.nodes.Document;
 
 /**
  *This class provides an interface for retrieving the necessary products from the website.
@@ -29,7 +30,7 @@ public class Spider
 
     public Spider(SpiderLeg spiderLeg)
     {
-
+        this.spiderLeg = spiderLeg;
     }
 
     /**
@@ -39,8 +40,8 @@ public class Spider
      * @return All media products that were found.
      */
     public ArrayList<Media> search(String url)
-
     {
+        Document document = spiderLeg.crawl(url);
         return null;
     }
 

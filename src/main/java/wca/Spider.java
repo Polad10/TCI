@@ -32,7 +32,7 @@ public class Spider
     }
 
     /**
-     * This constructor initializes the spiderLeg with received object and creates documentExtractor without document.
+     * This constructor sets the spiderLeg and creates documentExtractor without document.
      * @param spiderLeg SpiderLeg object to set.
      */
     public Spider(SpiderLeg spiderLeg)
@@ -50,6 +50,15 @@ public class Spider
     {
         this.spiderLeg = spiderLeg;
         this.documentExtractor = documentExtractor;
+    }
+
+    /**
+     * This constructor sets documentExtractor and creates spiderLeg.
+     * @param documentExtractor DocumentExtractor object to set.
+     */
+    public Spider(DocumentExtractor documentExtractor)
+    {
+
     }
 
     /**

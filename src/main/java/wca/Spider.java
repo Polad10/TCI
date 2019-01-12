@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import document_extractor.DocumentExtractor;
+import model.Book;
 import model.Media;
+import model.Movie;
+import model.Music;
 import org.jsoup.nodes.Document;
 
 /**
@@ -110,10 +113,34 @@ public class Spider
      */
     public ArrayList<Media> search(String url, String mediaType)
     {
-        crawlLink(url);
-        Media media = documentExtractor.extractMedia();
+        ArrayList<Media> medias = new ArrayList<>();
 
-        return null;
+        do
+        {
+            if(pagesToVisit.isEmpty())
+            {
+                crawlLink(url);
+            }
+            else
+            {
+                crawlLink(nextUrl());
+            }
+
+            Media media = documentExtractor.extractMedia();
+
+            if(media != null && !medias.contains(media))
+            {
+                if( (mediaType.equals("book") && media instanceof Book) ||
+                    (mediaType.equals("music") && media instanceof Music) ||
+                    (mediaType.equals("movie") && media instanceof Movie) )
+                {
+                    medias.add(media);
+                }
+            }
+
+        } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
+
+        return medias;
     }
 
     /**

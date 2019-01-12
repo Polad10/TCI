@@ -119,4 +119,15 @@ public class SpiderTest
 
         verify(documentExtractor).getLinks();
     }
+
+    @Test
+    public void searchAllMediaUsesExtractMediaInDocumentExtractor()
+    {
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(documentExtractor);
+
+        spider.search("url");
+
+        verify(documentExtractor).extractMedia();
+    }
 }

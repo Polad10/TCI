@@ -75,6 +75,8 @@ public class Spider
     public ArrayList<Media> search(String url, String mediaType)
     {
         Document document = spiderLeg.crawl(url);
+        documentExtractor.setDocument(document);
+
         return null;
     }
 

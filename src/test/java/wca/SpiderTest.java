@@ -1,5 +1,6 @@
 package wca;
 
+import org.jsoup.nodes.Document;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,38 +22,13 @@ public class SpiderTest
     }
 
     @Test
-    public void searchForExistentMediaType()
+    public void searchParticularMediaTypeUsesCrawlInSpiderLegWithCorrectArguments()
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
+        Spider spider = new Spider(spiderLeg);
 
-    }
+        spider.search("url", "mediaType");
 
-    @Test
-    public void searchForNonExistentMediaType()
-    {
-
-    }
-
-    @Test
-    public void searchForExistentMediaTypeAndExistentPropertyValue()
-    {
-
-    }
-
-    @Test
-    public void searchForNonExistentMediaTypeAndExistentPropertyValue()
-    {
-
-    }
-
-    @Test
-    public void searchForExistentMediaTypeAndNonExistentPropertyValue()
-    {
-
-    }
-
-    @Test
-    public void searchForNonExistentMediaTypeAndNonExistentPropertyValue()
-    {
-
+        verify(spiderLeg).crawl("url");
     }
 }

@@ -214,49 +214,34 @@ public class SpiderTest
     @Parameters(method = "oneOfEachMediaTypeProvider")
     public void searchBookMediaTypeReturnsAllBooksAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList)
     {
-        ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(mediaList.get(0)));
-
-        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
-
-        when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2")));
-        when(documentExtractor.extractMedia()).thenReturn(mediaList.get(0), mediaList.get(1), mediaList.get(2));
-
-        ArrayList<Media> actualMedias = spider.search("url", "book");
-
-        Assert.assertEquals(expectedMedias, actualMedias);
+        searchParticularMediaTypeReturnsAllRequiredMediaTypesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(mediaList.get(0), mediaList, "book");
     }
 
     @Test
     @Parameters(method = "oneOfEachMediaTypeProvider")
     public void searchMusicMediaTypeReturnsAllMusicsAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList)
     {
-        ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(mediaList.get(1)));
-
-        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
-
-        when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2")));
-        when(documentExtractor.extractMedia()).thenReturn(mediaList.get(0), mediaList.get(1), mediaList.get(2));
-
-        ArrayList<Media> actualMedias = spider.search("url", "music");
-
-        Assert.assertEquals(expectedMedias, actualMedias);
+        searchParticularMediaTypeReturnsAllRequiredMediaTypesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(mediaList.get(1), mediaList, "music");
     }
 
     @Test
     @Parameters(method = "oneOfEachMediaTypeProvider")
     public void searchMovieMediaTypeReturnsAllMoviesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList)
     {
-        ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(mediaList.get(2)));
+        searchParticularMediaTypeReturnsAllRequiredMediaTypesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(mediaList.get(2), mediaList, "movie");
+    }
+
+    private void searchParticularMediaTypeReturnsAllRequiredMediaTypesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(Media particularMedia, List<Media> allMedias, String particularType)
+    {
+        ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(particularMedia));
 
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);
 
         when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2")));
-        when(documentExtractor.extractMedia()).thenReturn(mediaList.get(0), mediaList.get(1), mediaList.get(2));
+        when(documentExtractor.extractMedia()).thenReturn(allMedias.get(0), allMedias.get(1), allMedias.get(2));
 
-        ArrayList<Media> actualMedias = spider.search("url", "movie");
+        ArrayList<Media> actualMedias = spider.search("url", particularType);
 
         Assert.assertEquals(expectedMedias, actualMedias);
     }

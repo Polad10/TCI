@@ -106,6 +106,7 @@ public class Spider
     {
         Document document = spiderLeg.crawl(url);
         documentExtractor.setDocument(document);
+        ArrayList<String> links = documentExtractor.getLinks();
 
         return null;
     }

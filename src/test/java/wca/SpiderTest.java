@@ -210,6 +210,23 @@ public class SpiderTest
         Assert.assertEquals(mediaList, actualMedias);
     }
 
+    @Test
+    @Parameters(method = "oneOfEachMediaTypeProvider")
+    public void searchBookMediaTypeReturnsAllBooksAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList)
+    {
+        ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(mediaList.get(0)));
+
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(documentExtractor);
+
+        when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2")));
+        when(documentExtractor.extractMedia()).thenReturn(mediaList.get(0), mediaList.get(1), mediaList.get(2));
+
+        ArrayList<Media> actualMedias = spider.search("url", "book");
+
+        Assert.assertEquals(expectedMedias, actualMedias);
+    }
+
     private Object[] fiveMixedTypeMediaProvider()
     {
         Book book1 = new Book("name1", "genre1", "format1", 1, new ArrayList<>(Collections.singletonList("author1")), "publisher1", "isbn1");
@@ -244,5 +261,14 @@ public class SpiderTest
         return new Object[] { Arrays.asList(book1, book2, book3, book4, book5),
                 Arrays.asList(music1, music2, music3, music4, music5),
                 Arrays.asList(movie1, movie2, movie3, movie4, movie5) };
+    }
+
+    private Object[] oneOfEachMediaTypeProvider()
+    {
+        Book book1 = new Book("name1", "genre1", "format1", 1, new ArrayList<>(Collections.singletonList("author1")), "publisher1", "isbn1");
+        Music music1 = new Music("name1", "genre1", "format1", 1, "artist1");
+        Movie movie1 = new Movie("name1", "genre1", "format1", 1, "director1", new ArrayList<>(Arrays.asList("writer1", "writer2")), new ArrayList<>(Arrays.asList("star1", "star2")));
+
+        return new Object[] {Arrays.asList(book1, music1, movie1)};
     }
 }

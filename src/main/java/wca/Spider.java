@@ -32,17 +32,19 @@ public class Spider
     }
 
     /**
-     * This constructor sets the spiderLeg and creates documentExtractor without document.
+     * This constructor sets the spiderLeg, creates documentExtractor without document and initializes other fields.
      * @param spiderLeg SpiderLeg object to set.
      */
     public Spider(SpiderLeg spiderLeg)
     {
         this.spiderLeg = spiderLeg;
         this.documentExtractor = new DocumentExtractor();
+        pagesToVisit = new ArrayList<>();
+        pagesVisited = new HashSet<>();
     }
 
     /**
-     * This constructor initializes spiderLeg and documentExtractor.
+     * This constructor initializes spiderLeg, documentExtractor and other fields.
      * @param spiderLeg SpiderLeg object to set.
      * @param documentExtractor DocumentExtractor object to set.
      */
@@ -50,16 +52,20 @@ public class Spider
     {
         this.spiderLeg = spiderLeg;
         this.documentExtractor = documentExtractor;
+        pagesToVisit = new ArrayList<>();
+        pagesVisited = new HashSet<>();
     }
 
     /**
-     * This constructor sets documentExtractor and creates spiderLeg.
+     * This constructor sets documentExtractor, creates spiderLeg and initializes other fields.
      * @param documentExtractor DocumentExtractor object to set.
      */
     public Spider(DocumentExtractor documentExtractor)
     {
         this.spiderLeg = new SpiderLeg();
         this.documentExtractor = documentExtractor;
+        pagesToVisit = new ArrayList<>();
+        pagesVisited = new HashSet<>();
     }
 
     /**

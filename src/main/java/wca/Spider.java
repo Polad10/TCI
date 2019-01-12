@@ -76,10 +76,29 @@ public class Spider
      */
     public ArrayList<Media> search(String url)
     {
-        crawlLink(url);
-        Media media = documentExtractor.extractMedia();
+        ArrayList<Media> medias = new ArrayList<>();
 
-        return null;
+        do
+        {
+            if(pagesToVisit.isEmpty())
+            {
+                crawlLink(url);
+            }
+            else
+            {
+                crawlLink(nextUrl());
+            }
+
+            Media media = documentExtractor.extractMedia();
+
+            if(media != null && !medias.contains(media))
+            {
+                medias.add(media);
+            }
+
+        } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
+
+        return medias;
     }
 
     /**
@@ -124,6 +143,14 @@ public class Spider
         Document document = spiderLeg.crawl(url);
         documentExtractor.setDocument(document);
         ArrayList<String> links = documentExtractor.getLinks();
+
+        for(String link : links)
+        {
+            if(!pagesVisited.contains(link))
+            {
+                pagesToVisit.add(link);
+            }
+        }
     }
 
     /**
@@ -132,6 +159,9 @@ public class Spider
      */
     private String nextUrl()
     {
-        return null;
+        String url = pagesToVisit.remove(0);
+        pagesVisited.add(url);
+
+        return url;
     }
 }

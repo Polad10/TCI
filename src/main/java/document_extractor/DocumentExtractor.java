@@ -57,7 +57,7 @@ public class DocumentExtractor
      */
     public ArrayList<String> getLinks()
     {
-        return null;
+        return new ArrayList<>();
     }
 
     /**

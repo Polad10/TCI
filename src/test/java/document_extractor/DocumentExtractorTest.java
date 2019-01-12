@@ -30,8 +30,12 @@ public class DocumentExtractorTest
     }
 
     @Test
-    public void getLinksReturnsCorrectNumberOfLinksInDocument()
+    public void getLinksReturnsCorrectNumberOfLinksInDocument()throws DocumentExtractorExceptions
     {
+        org.jsoup.nodes.Document mockDocu = Mockito.mock(Document.class);
+        DocumentExtractor documentExtractor = new DocumentExtractor(mockDocu);
+
+        Assert.assertEquals(documentExtractor.getLinks(),4);
 
     }
 

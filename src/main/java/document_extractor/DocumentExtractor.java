@@ -2,6 +2,8 @@ package document_extractor;
 
 import model.Media;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 public class DocumentExtractor
 {
     private Document document;
+    private ArrayList<String> Links;
 
     public DocumentExtractor(Document document) throws DocumentExtractorExceptions
     {
@@ -42,8 +45,9 @@ public class DocumentExtractor
      * @return All the links from the document.
      */
     public ArrayList<String> getLinks()
+
     {
-        return null;
+        return  null;
     }
 
     /**

@@ -6,9 +6,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -47,6 +50,7 @@ public class SpiderLeg
         {
             throw new SpiderLegException ("URL IS INVALID!");
         }
+
         else
         {
             try
@@ -63,6 +67,10 @@ public class SpiderLeg
             }
 
         }
+
+
+
+
 
         return htmlDocument;
     }

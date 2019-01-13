@@ -60,7 +60,6 @@ public class DocumentExtractor {
 
     public Movie extractMovie()
     {
-
         String name = null;
 
         for (Element s : document.getElementsByClass("media-details"))
@@ -69,11 +68,12 @@ public class DocumentExtractor {
             {
                 name = r.text();
             }
-
         }
 
         return new Movie(name,null,null,0000,null,null,null);
     }
+
+
 
     public Music extractMusic()
     {

@@ -26,13 +26,37 @@ public class Spider
     private ArrayList<String> pagesToVisit;
     private SpiderLeg spiderLeg;
     private DocumentExtractor documentExtractor;
+    private long startTime;
+    private long endTime;
+    private double timeElapsed;
+    private int searchDepth;
+    private int nrPagesInCurrentLevel;
+    private int nrVisitedPagesInCurrentLevel;
+
+    public double getTimeElapsed()
+    {
+        return timeElapsed;
+    }
+
+    public int getSearchDepth()
+    {
+        return searchDepth;
+    }
+
+    public int getNrPagesVisited()
+    {
+        return pagesVisited.size();
+    }
 
     /**
      * This is a default constructor.
      */
     public Spider()
     {
-
+        this.spiderLeg = new SpiderLeg();
+        this.documentExtractor = new DocumentExtractor();
+        pagesToVisit = new ArrayList<>();
+        pagesVisited = new HashSet<>();
     }
 
     /**
@@ -80,6 +104,7 @@ public class Spider
      */
     public ArrayList<Media> search(String url) throws SpiderLegException
     {
+        startTime = System.nanoTime();
         ArrayList<Media> medias = new ArrayList<>();
 
         try
@@ -102,6 +127,8 @@ public class Spider
                     medias.add(media);
                 }
 
+                updateSearchDepth();
+
             } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
 
             return medias;
@@ -109,6 +136,11 @@ public class Spider
         catch(DocumentExtractorExceptions ex)
         {
             return medias;
+        }
+        finally
+        {
+            endTime = System.nanoTime();
+            timeElapsed = (endTime - startTime) / 1000000000.0;
         }
     }
 
@@ -121,6 +153,7 @@ public class Spider
      */
     public ArrayList<Media> search(String url, String mediaType) throws SpiderLegException
     {
+        startTime = System.nanoTime();
         ArrayList<Media> medias = new ArrayList<>();
 
         try
@@ -149,6 +182,8 @@ public class Spider
                     }
                 }
 
+                updateSearchDepth();
+
             } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
 
             return medias;
@@ -156,6 +191,11 @@ public class Spider
         catch(DocumentExtractorExceptions ex)
         {
             return medias;
+        }
+        finally
+        {
+            endTime = System.nanoTime();
+            timeElapsed = (endTime - startTime) / 1000000000.0;
         }
     }
 
@@ -170,6 +210,7 @@ public class Spider
      */
     public ArrayList<Media> search(String url, String mediaType, String property, String propertyValue) throws SpiderLegException
     {
+        startTime = System.nanoTime();
         ArrayList<Media> medias = new ArrayList<>();
 
         try
@@ -233,6 +274,8 @@ public class Spider
                             }
                             break;
                     }
+
+                    updateSearchDepth();
                 }
 
             } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
@@ -242,6 +285,11 @@ public class Spider
         catch(DocumentExtractorExceptions ex)
         {
             return medias;
+        }
+        finally
+        {
+            endTime = System.nanoTime();
+            timeElapsed = (endTime - startTime) / 1000000000.0;
         }
     }
 
@@ -275,5 +323,25 @@ public class Spider
         pagesVisited.add(url);
 
         return url;
+    }
+
+    /**
+     * This method updates the serch depth.
+     */
+    private void updateSearchDepth()
+    {
+        if(nrPagesInCurrentLevel == 0)
+        {
+            nrPagesInCurrentLevel = pagesToVisit.size();
+            searchDepth++;
+        }
+
+        nrVisitedPagesInCurrentLevel++;
+
+        if(nrVisitedPagesInCurrentLevel >= nrPagesInCurrentLevel)
+        {
+            nrVisitedPagesInCurrentLevel = 0;
+            nrPagesInCurrentLevel = 0;
+        }
     }
 }

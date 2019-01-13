@@ -60,6 +60,7 @@ public class DocumentExtractor {
 
     public Movie extractMovie()
     {
+        ArrayList<String> MovieAttri = new ArrayList<>();
         String name = null;
 
         for (Element s : document.getElementsByClass("media-details"))
@@ -68,9 +69,30 @@ public class DocumentExtractor {
             {
                 name = r.text();
             }
+
+            for( Element r : s.getElementsByTag("td"))
+            {
+                String raw = r.text();
+                MovieAttri.add(raw);
+            }
         }
 
-        return new Movie(name,null,null,0000,null,null,null);
+        ArrayList<String> stars   = new ArrayList<>();
+
+        String genre=MovieAttri.get(0);
+        String format=MovieAttri.get(2);
+        int year = Integer.parseInt(MovieAttri.get(3));
+        String director = MovieAttri.get(3);
+
+
+        String[] temp=MovieAttri.get(6).split(",");
+        for(String part:temp)
+        {
+            stars.add(part);
+        }
+
+        Movie movie = new Movie(name,genre,format,year,director,null,stars);
+        return movie;
     }
 
 

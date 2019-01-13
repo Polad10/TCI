@@ -135,7 +135,7 @@ public class DocumentExtractorTest
         Assert.assertNotNull(documentExtractor.extractMedia().getName(),expectedName);
     }
 
-
+    @Test
     public void ExtactMovieMustReturnMovieObjectWithRightNumberOfStars() throws DocumentExtractorExceptions
     {
         String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/the_lord_of_the_rings.html";

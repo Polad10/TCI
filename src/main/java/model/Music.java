@@ -11,6 +11,9 @@ package model;
 public class Music extends Media
 {
     private String artist;
+    private String genre;
+    private String format;
+    private int year;
 
     /**
      * This is a Music constructor.

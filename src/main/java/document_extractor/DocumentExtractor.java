@@ -107,7 +107,31 @@ public class DocumentExtractor {
     public Music extractMusic()
     {
 
-     return null;
+        ArrayList<String> MusicAttri = new ArrayList<>();
+        String name = null;
+
+        for (Element s : document.getElementsByClass("media-details"))
+        {
+            for( Element r : s.getElementsByTag("h1"))
+            {
+                name = r.text();
+            }
+
+            for( Element r : s.getElementsByTag("td"))
+            {
+                String raw = r.text();
+                MusicAttri.add(raw);
+            }
+        }
+
+        String genre=MusicAttri.get(1);
+        String format=MusicAttri.get(2);
+        int year = Integer.parseInt(MusicAttri.get(3));
+        String artist =MusicAttri.get(4);
+
+        Music music = new Music(name,genre,format,year,artist);
+
+        return music;
     }
 
 

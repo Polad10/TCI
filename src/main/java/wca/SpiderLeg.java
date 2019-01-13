@@ -59,7 +59,7 @@ public class SpiderLeg
             }
             catch(IOException ioe)
             {
-                System.out.println("Error in out HTTP request " + ioe);
+                throw new SpiderLegException("Error in out HTTP request " + ioe);
             }
 
         }

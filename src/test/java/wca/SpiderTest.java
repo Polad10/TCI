@@ -258,6 +258,18 @@ public class SpiderTest
         searchParticularMediaTypeAndMediaPropertyReturnsAllNonDuplicateMediaWithRequiredPropertyReceivedFromDocumentExtractor(mediaList, Arrays.asList(expectedMedia), particularType, property, propertyValue);
     }
 
+    @Test
+    @Parameters(method = "oneOfEachMediaTypeProvider")
+    public void searchMusicsWithParticularMusicPropertyReturnsAllNonDuplicateMusicsWithRequiredProperty(List<Media> mediaList)
+    {
+        Media expectedMedia = mediaList.get(1);
+        String particularType = "music";
+        String property = "artist";
+        String propertyValue = ((Music)mediaList.get(1)).getArtist();
+
+        searchParticularMediaTypeAndMediaPropertyReturnsAllNonDuplicateMediaWithRequiredPropertyReceivedFromDocumentExtractor(mediaList, Arrays.asList(expectedMedia), particularType, property, propertyValue);
+    }
+
     private void searchParticularMediaTypeAndMediaPropertyReturnsAllNonDuplicateMediaWithRequiredPropertyReceivedFromDocumentExtractor(List<Media> allMedias, List<Media> expectedMedias,
                                                                                                                                        String particularType, String property, String propertyValue)
     {

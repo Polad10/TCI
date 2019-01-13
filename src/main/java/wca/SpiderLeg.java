@@ -7,6 +7,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +24,8 @@ public class SpiderLeg
 
     private Document htmlDocument ;
     private ArrayList<String> links;
+    private URL validURL = null;
+
     /**
      * This is a default constructor.
      */
@@ -47,8 +51,8 @@ public class SpiderLeg
         {
             try
             {
-                Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
-
+                validURL = new URL(url);
+                Connection connection = Jsoup.connect(validURL.toString()).userAgent(USER_AGENT);
                 Document htmlDocument = connection.get();
                 this.htmlDocument = htmlDocument;
 

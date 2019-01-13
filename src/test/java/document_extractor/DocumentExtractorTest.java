@@ -199,7 +199,7 @@ public class DocumentExtractorTest
         }
 
         DocumentExtractor documentExtractor = documentExtractor = new DocumentExtractor(local_html_doc);
-        String ISBN = "978-0132350884";
+        String ISBN = "007-6092046981";
         Assert.assertEquals(documentExtractor.extractBook().getIsbn(),ISBN);
     }
 }

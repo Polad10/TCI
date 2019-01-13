@@ -28,6 +28,7 @@ public class SpiderLeg
     private Document htmlDocument ;
     private ArrayList<String> links;
     private URL validURL = null;
+    private boolean notValidUrl = false;
 
     /**
      * This is a default constructor.
@@ -59,6 +60,7 @@ public class SpiderLeg
                 Connection connection = Jsoup.connect(validURL.toString()).userAgent(USER_AGENT);
                 Document htmlDocument = connection.get();
                 this.htmlDocument = htmlDocument;
+                notValidUrl= true;
 
             }
             catch(IOException ioe)
@@ -68,7 +70,22 @@ public class SpiderLeg
 
         }
 
+        if (notValidUrl== false)
+        {
+            Path path = Paths.get(url);
+            File input = new File(String.valueOf(path));
+            Document document = null;
+            try
+            {
+                document = Jsoup.parse(input, "UTF-8");
+                this.htmlDocument = document;
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
 
+        }
 
 
 

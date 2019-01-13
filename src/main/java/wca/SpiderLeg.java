@@ -6,6 +6,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+
 /**
  *This class crawls the website and deals with HTTP request and responses.
  *
@@ -17,11 +22,16 @@ public class SpiderLeg
 {
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
 
+    private Document htmlDocument ;
+    private ArrayList<String> links;
+    private URL validURL = null;
+
     /**
      * This is a default constructor.
      */
     public SpiderLeg()
     {
+        links = new ArrayList<>();
 
     }
 
@@ -30,8 +40,30 @@ public class SpiderLeg
      * @param url The URL to crawl.
      * @return The gathered html page.
      */
-    public Document crawl(String url)
+    public Document crawl(String url) throws SpiderLegException
+
     {
-        return null;
+        if (url=="")
+        {
+            throw new SpiderLegException ("URL IS INVALID!");
+        }
+        else
+        {
+            try
+            {
+                validURL = new URL(url);
+                Connection connection = Jsoup.connect(validURL.toString()).userAgent(USER_AGENT);
+                Document htmlDocument = connection.get();
+                this.htmlDocument = htmlDocument;
+
+            }
+            catch(IOException ioe)
+            {
+                System.out.println("Error in out HTTP request " + ioe);
+            }
+
+        }
+
+        return htmlDocument;
     }
 }

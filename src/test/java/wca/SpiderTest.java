@@ -1,6 +1,7 @@
 package wca;
 
 import document_extractor.DocumentExtractor;
+import document_extractor.DocumentExtractorExceptions;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import model.Book;
@@ -22,10 +23,11 @@ import static org.junit.Assert.*;
 public class SpiderTest
 {
     @Test
-    public void searchAllMediaUsesCrawlInSpiderLegWithCorrectArguments()
+    public void searchAllMediaUsesCrawlInSpiderLegWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
     {
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
-        Spider spider = new Spider(spiderLeg);
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         spider.search("url");
 
@@ -33,10 +35,11 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeUsesCrawlInSpiderLegWithCorrectArguments()
+    public void searchParticularMediaTypeUsesCrawlInSpiderLegWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
     {
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
-        Spider spider = new Spider(spiderLeg);
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         spider.search("url", "mediaType");
 
@@ -44,10 +47,11 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeAndMediaPropertyUsesCrawlInSpiderLegWithCorrectArguments()
+    public void searchParticularMediaTypeAndMediaPropertyUsesCrawlInSpiderLegWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
     {
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
-        Spider spider = new Spider(spiderLeg);
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         spider.search("url", "mediaType", "property", "value");
 
@@ -55,7 +59,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchAllMediaUsesSetDocumentInDocumentExtractorWithCorrectArguments()
+    public void searchAllMediaUsesSetDocumentInDocumentExtractorWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
     {
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
@@ -69,7 +73,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeUsesSetDocumentInDocumentExtractorWithCorrectArguments()
+    public void searchParticularMediaTypeUsesSetDocumentInDocumentExtractorWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
     {
 
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
@@ -84,7 +88,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeAndMediaPropertyUsesSetDocumentInDocumentExtractorWithCorrectArguments()
+    public void searchParticularMediaTypeAndMediaPropertyUsesSetDocumentInDocumentExtractorWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
     {
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
@@ -98,7 +102,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchAllMediaUsesGetLinksInDocumentExtractor()
+    public void searchAllMediaUsesGetLinksInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);
@@ -109,7 +113,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeUsesGetLinksInDocumentExtractor()
+    public void searchParticularMediaTypeUsesGetLinksInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);
@@ -120,7 +124,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeAndMediaPropertyUsesGetLinksInDocumentExtractor()
+    public void searchParticularMediaTypeAndMediaPropertyUsesGetLinksInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);
@@ -131,7 +135,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchAllMediaUsesExtractMediaInDocumentExtractor()
+    public void searchAllMediaUsesExtractMediaInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);
@@ -142,7 +146,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeUsesExtractMediaInDocumentExtractor()
+    public void searchParticularMediaTypeUsesExtractMediaInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);
@@ -153,7 +157,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeAndMediaPropertyUsesExtractMediaInDocumentExtractor()
+    public void searchParticularMediaTypeAndMediaPropertyUsesExtractMediaInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);
@@ -165,7 +169,7 @@ public class SpiderTest
 
     @Test
     @Parameters(method = "fiveMixedTypeMediaProvider")
-    public void searchAllMediaReturnsAllNonDuplicateMediaReceivedFromDocumentExtractor(List<Media> mediaList)
+    public void searchAllMediaReturnsAllNonDuplicateMediaReceivedFromDocumentExtractor(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);
@@ -181,7 +185,7 @@ public class SpiderTest
 
     @Test
     @Parameters(method = "fiveSingleTypeMediaProvider")
-    public void searchParticularMediaTypeReturnsAllNonDuplicateMediaReceivedFromDocumentExtractor(List<Media> mediaList)
+    public void searchParticularMediaTypeReturnsAllNonDuplicateMediaReceivedFromDocumentExtractor(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);
@@ -212,26 +216,27 @@ public class SpiderTest
 
     @Test
     @Parameters(method = "oneOfEachMediaTypeProvider")
-    public void searchBookMediaTypeReturnsAllBooksAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList)
+    public void searchBookMediaTypeReturnsAllBooksAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
         searchParticularMediaTypeReturnsAllRequiredMediaTypesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(mediaList.get(0), mediaList, "book");
     }
 
     @Test
     @Parameters(method = "oneOfEachMediaTypeProvider")
-    public void searchMusicMediaTypeReturnsAllMusicsAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList)
+    public void searchMusicMediaTypeReturnsAllMusicsAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
         searchParticularMediaTypeReturnsAllRequiredMediaTypesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(mediaList.get(1), mediaList, "music");
     }
 
     @Test
     @Parameters(method = "oneOfEachMediaTypeProvider")
-    public void searchMovieMediaTypeReturnsAllMoviesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList)
+    public void searchMovieMediaTypeReturnsAllMoviesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
         searchParticularMediaTypeReturnsAllRequiredMediaTypesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(mediaList.get(2), mediaList, "movie");
     }
 
     private void searchParticularMediaTypeReturnsAllRequiredMediaTypesAndIgnoresOtherMediaTypesReceivedFromDocumentExtractor(Media particularMedia, List<Media> allMedias, String particularType)
+            throws SpiderLegException, DocumentExtractorExceptions
     {
         ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(particularMedia));
 
@@ -248,7 +253,7 @@ public class SpiderTest
 
     @Test
     @Parameters(method = "oneOfEachMediaTypeProvider")
-    public void searchBooksWithParticularBookPropertyReturnsAllNonDuplicateBooksWithRequiredProperty(List<Media> mediaList)
+    public void searchBooksWithParticularBookPropertyReturnsAllNonDuplicateBooksWithRequiredProperty(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
         Media expectedMedia = mediaList.get(0);
         String particularType = "book";
@@ -260,7 +265,7 @@ public class SpiderTest
 
     @Test
     @Parameters(method = "oneOfEachMediaTypeProvider")
-    public void searchMusicsWithParticularMusicPropertyReturnsAllNonDuplicateMusicsWithRequiredProperty(List<Media> mediaList)
+    public void searchMusicsWithParticularMusicPropertyReturnsAllNonDuplicateMusicsWithRequiredProperty(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
         Media expectedMedia = mediaList.get(1);
         String particularType = "music";
@@ -272,7 +277,7 @@ public class SpiderTest
 
     @Test
     @Parameters(method = "oneOfEachMediaTypeProvider")
-    public void searchMoviesWithParticularMoviePropertyReturnsAllNonDuplicateMoviesWithRequiredProperty(List<Media> mediaList)
+    public void searchMoviesWithParticularMoviePropertyReturnsAllNonDuplicateMoviesWithRequiredProperty(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
         Media expectedMedia = mediaList.get(2);
         String particularType = "movie";
@@ -284,6 +289,7 @@ public class SpiderTest
 
     private void searchParticularMediaTypeAndMediaPropertyReturnsAllNonDuplicateMediaWithRequiredPropertyReceivedFromDocumentExtractor(List<Media> allMedias, List<Media> expectedMedias,
                                                                                                                                        String particularType, String property, String propertyValue)
+                                                                                                                                        throws SpiderLegException, DocumentExtractorExceptions
     {
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
         Spider spider = new Spider(documentExtractor);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import document_extractor.DocumentExtractor;
+import document_extractor.DocumentExtractorExceptions;
 import model.Book;
 import model.Media;
 import model.Movie;
@@ -77,7 +78,7 @@ public class Spider
      * @param url The URL to search.
      * @return All media products that were found.
      */
-    public ArrayList<Media> search(String url)
+    public ArrayList<Media> search(String url) throws SpiderLegException, DocumentExtractorExceptions
     {
         ArrayList<Media> medias = new ArrayList<>();
 
@@ -111,7 +112,7 @@ public class Spider
      * @param mediaType The media type to search for.
      * @return All media products that were found.
      */
-    public ArrayList<Media> search(String url, String mediaType)
+    public ArrayList<Media> search(String url, String mediaType) throws SpiderLegException, DocumentExtractorExceptions
     {
         ArrayList<Media> medias = new ArrayList<>();
 
@@ -152,7 +153,7 @@ public class Spider
      * @param propertyValue The value of the specific property to look for in the products.
      * @return All media products that were found.
      */
-    public ArrayList<Media> search(String url, String mediaType, String property, String propertyValue)
+    public ArrayList<Media> search(String url, String mediaType, String property, String propertyValue) throws SpiderLegException, DocumentExtractorExceptions
     {
         ArrayList<Media> medias = new ArrayList<>();
 
@@ -227,7 +228,7 @@ public class Spider
      * and it also retrieves all the links to visit next.
      * @param url URL to crawl.
      */
-    private void crawlLink(String url)
+    private void crawlLink(String url) throws SpiderLegException, DocumentExtractorExceptions
     {
         Document document = spiderLeg.crawl(url);
         documentExtractor.setDocument(document);

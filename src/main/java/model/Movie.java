@@ -16,6 +16,7 @@ public class Movie extends Media
     private ArrayList<String> writers;
     private ArrayList<String> stars;
 
+
     /**
      * This is a Movie constructor.
      * @param director Director of this movie.

@@ -180,4 +180,28 @@ public class DocumentExtractorTest
         String artist = "Ludwig van Beethoven";
         Assert.assertEquals(documentExtractor.extractMusic().getArtist(),artist);
     }
+
+
+    @Test
+    public void ExtractBookMustReturnSameTheRightISBN_number()  throws DocumentExtractorExceptions
+    {
+        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/beethoven.html";
+        File input = new File(Path);
+        org.jsoup.nodes.Document local_html_doc = null;
+
+        try
+        {
+            local_html_doc = Jsoup.parse(input, "UTF-8", "");
+
+        }
+        catch (IOException ioe)
+        {
+            System.out.println("Error in loading file " + ioe);
+
+        }
+
+        DocumentExtractor documentExtractor = documentExtractor = new DocumentExtractor(local_html_doc);
+        String ISBN = "978-0132350884";
+        Assert.assertEquals(documentExtractor.extractBook().getIsbn(),ISBN);
+    }
 }

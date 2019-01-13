@@ -86,8 +86,28 @@ public class DocumentExtractorTest
 
 
     @Test
-    public void extractMediaReturnsNullWhenDocumentDoesNotContainMedia()
+    public void extractMediaReturnsNullWhenDocumentDoesNotContainMedia() throws DocumentExtractorExceptions
     {
+        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/index.html";
+        File input = new File(Path);
+        org.jsoup.nodes.Document local_html_doc = null;
+
+        try
+        {
+            local_html_doc = Jsoup.parse(input, "UTF-8", "");
+
+        }
+        catch (IOException ioe)
+        {
+            System.out.println("Error in loading file " + ioe);
+
+        }
+
+        DocumentExtractor documentExtractor = documentExtractor = new DocumentExtractor(local_html_doc);
+        Movie mockMovie = Mockito.mock(Movie.class);
+
+        Assert.assertNull(documentExtractor.extractMedia());
+
 
     }
 }

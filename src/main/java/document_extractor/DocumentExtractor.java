@@ -78,6 +78,7 @@ public class DocumentExtractor {
         }
 
         ArrayList<String> stars   = new ArrayList<>();
+        ArrayList<String> writers = new ArrayList<>();
 
         String genre=MovieAttri.get(0);
         String format=MovieAttri.get(2);
@@ -85,13 +86,21 @@ public class DocumentExtractor {
         String director = MovieAttri.get(3);
 
 
-        String[] temp=MovieAttri.get(6).split(",");
+
+
+        String[] temp=MovieAttri.get(5).split(",");
         for(String part:temp)
+        {
+            writers.add(part);
+        }
+
+        String[] temp2=MovieAttri.get(6).split(",");
+        for(String part:temp2)
         {
             stars.add(part);
         }
 
-        Movie movie = new Movie(name,genre,format,year,director,null,stars);
+        Movie movie = new Movie(name,genre,format,year,director,writers,stars);
         return movie;
     }
 

@@ -11,6 +11,15 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <h1>API</h1>
+    <ul>
+      <li>localhost:8081/rest/</li>
+      <li>localhost:8081/rest/books</li>
+      <li>localhost:8081/rest/books/{property}/{value}</li>
+      <li>localhost:8081/rest/musics</li>
+      <li>localhost:8081/rest/musics/{property/{value}</li>
+      <li>localhost:8081/rest/movies</li>
+      <li>localhost:8081/rest/movies/{property}/{value}</li>
+    </ul>
   </body>
 </html>

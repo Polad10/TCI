@@ -185,7 +185,7 @@ public class DocumentExtractorTest
     @Test
     public void ExtractBookMustReturnSameTheRightISBN_number()  throws DocumentExtractorExceptions
     {
-        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/beethoven.html";
+        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/clean_code.html";
         File input = new File(Path);
         org.jsoup.nodes.Document local_html_doc = null;
 

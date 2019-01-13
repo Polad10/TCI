@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import rest_service.MovieResource;
 
+import javax.crypto.interfaces.PBEKey;
 import java.util.ArrayList;
 
 /**
@@ -138,7 +139,39 @@ public class DocumentExtractor {
     public Book extractBook()
     {
 
-       return null;
+        ArrayList<String> BookAttri = new ArrayList<>();
+        String name = null;
+
+        for (Element s : document.getElementsByClass("media-details"))
+        {
+            for( Element r : s.getElementsByTag("h1"))
+            {
+                name = r.text();
+            }
+
+            for( Element r : s.getElementsByTag("td"))
+            {
+                String raw = r.text();
+                BookAttri.add(raw);
+            }
+        }
+
+        String genre=BookAttri.get(1);
+        String format=BookAttri.get(2);
+        int year = Integer.parseInt(BookAttri.get(3));
+        String Publisher =BookAttri.get(5);
+        String ISBN = BookAttri.get(6);
+
+        ArrayList<String> AuthorsList = new ArrayList<>();
+        String[] temp2=BookAttri.get(4).split(",");
+        for(String part:temp2)
+        {
+            AuthorsList.add(part);
+        }
+
+        Book book = new Book(name,genre,format,year,AuthorsList,Publisher,ISBN);
+        return book;
+
     }
 
 

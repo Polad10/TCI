@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 public class SpiderTest
 {
     @Test
-    public void searchAllMediaUsesCrawlInSpiderLegWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
+    public void searchAllMediaUsesCrawlInSpiderLegWithCorrectArguments() throws SpiderLegException
     {
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
@@ -35,7 +35,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeUsesCrawlInSpiderLegWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
+    public void searchParticularMediaTypeUsesCrawlInSpiderLegWithCorrectArguments() throws SpiderLegException
     {
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
@@ -59,7 +59,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchAllMediaUsesSetDocumentInDocumentExtractorWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
+    public void searchAllMediaUsesSetDocumentInDocumentExtractorWithCorrectArguments() throws SpiderLegException
     {
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
@@ -73,7 +73,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeUsesSetDocumentInDocumentExtractorWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
+    public void searchParticularMediaTypeUsesSetDocumentInDocumentExtractorWithCorrectArguments() throws SpiderLegException
     {
 
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
@@ -88,7 +88,7 @@ public class SpiderTest
     }
 
     @Test
-    public void searchParticularMediaTypeAndMediaPropertyUsesSetDocumentInDocumentExtractorWithCorrectArguments() throws SpiderLegException, DocumentExtractorExceptions
+    public void searchParticularMediaTypeAndMediaPropertyUsesSetDocumentInDocumentExtractorWithCorrectArguments() throws SpiderLegException
     {
         SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);

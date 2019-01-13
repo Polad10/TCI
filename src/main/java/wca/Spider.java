@@ -78,31 +78,38 @@ public class Spider
      * @param url The URL to search.
      * @return All media products that were found.
      */
-    public ArrayList<Media> search(String url) throws SpiderLegException, DocumentExtractorExceptions
+    public ArrayList<Media> search(String url) throws SpiderLegException
     {
         ArrayList<Media> medias = new ArrayList<>();
 
-        do
+        try
         {
-            if(pagesToVisit.isEmpty())
+            do
             {
-                crawlLink(url);
-            }
-            else
-            {
-                crawlLink(nextUrl());
-            }
+                if(pagesToVisit.isEmpty())
+                {
+                    crawlLink(url);
+                }
+                else
+                {
+                    crawlLink(nextUrl());
+                }
 
-            Media media = documentExtractor.extractMedia();
+                Media media = documentExtractor.extractMedia();
 
-            if(media != null && !medias.contains(media))
-            {
-                medias.add(media);
-            }
+                if(media != null && !medias.contains(media))
+                {
+                    medias.add(media);
+                }
 
-        } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
+            } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
 
-        return medias;
+            return medias;
+        }
+        catch(DocumentExtractorExceptions ex)
+        {
+            return medias;
+        }
     }
 
     /**
@@ -112,36 +119,44 @@ public class Spider
      * @param mediaType The media type to search for.
      * @return All media products that were found.
      */
-    public ArrayList<Media> search(String url, String mediaType) throws SpiderLegException, DocumentExtractorExceptions
+    public ArrayList<Media> search(String url, String mediaType) throws SpiderLegException
     {
         ArrayList<Media> medias = new ArrayList<>();
 
-        do
+        try
         {
-            if(pagesToVisit.isEmpty())
-            {
-                crawlLink(url);
-            }
-            else
-            {
-                crawlLink(nextUrl());
-            }
 
-            Media media = documentExtractor.extractMedia();
-
-            if(media != null && !medias.contains(media))
+            do
             {
-                if( (mediaType.equals("book") && media instanceof Book) ||
-                    (mediaType.equals("music") && media instanceof Music) ||
-                    (mediaType.equals("movie") && media instanceof Movie) )
+                if(pagesToVisit.isEmpty())
                 {
-                    medias.add(media);
+                    crawlLink(url);
                 }
-            }
+                else
+                {
+                    crawlLink(nextUrl());
+                }
 
-        } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
+                Media media = documentExtractor.extractMedia();
 
-        return medias;
+                if(media != null && !medias.contains(media))
+                {
+                    if( (mediaType.equals("book") && media instanceof Book) ||
+                            (mediaType.equals("music") && media instanceof Music) ||
+                            (mediaType.equals("movie") && media instanceof Movie) )
+                    {
+                        medias.add(media);
+                    }
+                }
+
+            } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
+
+            return medias;
+        }
+        catch(DocumentExtractorExceptions ex)
+        {
+            return medias;
+        }
     }
 
     /**
@@ -153,74 +168,81 @@ public class Spider
      * @param propertyValue The value of the specific property to look for in the products.
      * @return All media products that were found.
      */
-    public ArrayList<Media> search(String url, String mediaType, String property, String propertyValue) throws SpiderLegException, DocumentExtractorExceptions
+    public ArrayList<Media> search(String url, String mediaType, String property, String propertyValue) throws SpiderLegException
     {
         ArrayList<Media> medias = new ArrayList<>();
 
-        do
+        try
         {
-            if(pagesToVisit.isEmpty())
+            do
             {
-                crawlLink(url);
-            }
-            else
-            {
-                crawlLink(nextUrl());
-            }
-
-            Media media = documentExtractor.extractMedia();
-
-            if(media != null && !medias.contains(media))
-            {
-                switch(property)
+                if(pagesToVisit.isEmpty())
                 {
-                    case "name":
-                        if(media.getName().toLowerCase().equals(propertyValue.toLowerCase()))
-                        {
-                            if( (mediaType.equals("book") && media instanceof Book) ||
-                                    (mediaType.equals("music") && media instanceof Music) ||
-                                    (mediaType.equals("movie") && media instanceof Movie) )
+                    crawlLink(url);
+                }
+                else
+                {
+                    crawlLink(nextUrl());
+                }
+
+                Media media = documentExtractor.extractMedia();
+
+                if(media != null && !medias.contains(media))
+                {
+                    switch(property)
+                    {
+                        case "name":
+                            if(media.getName().toLowerCase().equals(propertyValue.toLowerCase()))
+                            {
+                                if( (mediaType.equals("book") && media instanceof Book) ||
+                                        (mediaType.equals("music") && media instanceof Music) ||
+                                        (mediaType.equals("movie") && media instanceof Movie) )
+                                {
+                                    medias.add(media);
+                                }
+                            }
+                            break;
+                        case "director":
+                            if(mediaType.equals("movie") && media instanceof Movie && ((Movie) media).getDirector().toLowerCase().equals(propertyValue.toLowerCase()))
                             {
                                 medias.add(media);
                             }
-                        }
-                        break;
-                    case "director":
-                        if(mediaType.equals("movie") && media instanceof Movie && ((Movie) media).getDirector().toLowerCase().equals(propertyValue.toLowerCase()))
-                        {
-                            medias.add(media);
-                        }
-                        break;
-                    case "writer":
-                        if(mediaType.equals("movie") && media instanceof Movie && ((Movie) media).getWriters().contains(propertyValue))
-                        {
-                            medias.add(media);
-                        }
-                        break;
-                    case "star":
-                        if(mediaType.equals("movie") && media instanceof Movie && ((Movie) media).getStars().contains(propertyValue))
-                        {
-                            medias.add(media);
-                        }
-                        break;
-                    case "artist":
-                        if(mediaType.equals("music") && media instanceof Music && ((Music) media).getArtist().toLowerCase().equals(propertyValue.toLowerCase()))
-                        {
-                            medias.add(media);
-                        }
-                        break;
-                    case "author":
-                        if(mediaType.equals("book") && media instanceof Book && ((Book) media).getAuthors().contains(propertyValue))
-                        {
-                            medias.add(media);
-                        }
-                        break;
+                            break;
+                        case "writer":
+                            if(mediaType.equals("movie") && media instanceof Movie && ((Movie) media).getWriters().contains(propertyValue))
+                            {
+                                medias.add(media);
+                            }
+                            break;
+                        case "star":
+                            if(mediaType.equals("movie") && media instanceof Movie && ((Movie) media).getStars().contains(propertyValue))
+                            {
+                                medias.add(media);
+                            }
+                            break;
+                        case "artist":
+                            if(mediaType.equals("music") && media instanceof Music && ((Music) media).getArtist().toLowerCase().equals(propertyValue.toLowerCase()))
+                            {
+                                medias.add(media);
+                            }
+                            break;
+                        case "author":
+                            if(mediaType.equals("book") && media instanceof Book && ((Book) media).getAuthors().contains(propertyValue))
+                            {
+                                medias.add(media);
+                            }
+                            break;
+                    }
                 }
-            }
 
-        } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
+            } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
 
-        return medias;
+            return medias;
+        }
+        catch(DocumentExtractorExceptions ex)
+        {
+            return medias;
+        }
     }
 
     /**

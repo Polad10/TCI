@@ -1,11 +1,8 @@
 package converter;
 
-import static org.junit.Assert.*;
-
 import com.owlike.genson.GenericType;
 import com.owlike.genson.Genson;
 import com.owlike.genson.GensonBuilder;
-import com.owlike.genson.reflect.VisibilityFilter;
 import model.Book;
 import model.Media;
 import model.Movie;
@@ -16,7 +13,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MediaConverterTest
+public class ConverterTest
 {
     private Genson genson = new GensonBuilder().useConstructorWithArguments(true).addAlias("book", Book.class).addAlias("music", Music.class).addAlias("movie", Movie.class)
             .useRuntimeType(true).create();
@@ -29,7 +26,7 @@ public class MediaConverterTest
         authors.add("author2");
 
         Book expectedBook = new Book("name", "genre", "format", 1, authors, "publisher", "isbn");
-        String bookJson = MediaConverter.toJson(expectedBook);
+        String bookJson = Converter.toJson(expectedBook);
         Book actualBook = genson.deserialize(bookJson, Book.class);
         Assert.assertEquals(expectedBook, actualBook);
     }
@@ -42,7 +39,7 @@ public class MediaConverterTest
         authors.add("author2");
 
         Media expectedBook = new Book("name", "genre", "format", 1, authors, "publisher", "isbn");
-        String bookJson = MediaConverter.toJson(expectedBook);
+        String bookJson = Converter.toJson(expectedBook);
         Book actualBook = genson.deserialize(bookJson, Book.class);
         Assert.assertEquals(expectedBook, actualBook);
     }
@@ -59,7 +56,7 @@ public class MediaConverterTest
         stars.add("star2");
 
         Movie expectedMovie = new Movie("name", "genre", "format", 1, "director", writers, stars);
-        String movieJson = MediaConverter.toJson(expectedMovie);
+        String movieJson = Converter.toJson(expectedMovie);
         Movie actualMovie = genson.deserialize(movieJson, Movie.class);
         Assert.assertEquals(expectedMovie, actualMovie);
     }
@@ -76,7 +73,7 @@ public class MediaConverterTest
         stars.add("star2");
 
         Media expectedMovie = new Movie("name", "genre", "format", 1, "director", writers, stars);
-        String movieJson = MediaConverter.toJson(expectedMovie);
+        String movieJson = Converter.toJson(expectedMovie);
         Movie actualMovie = genson.deserialize(movieJson, Movie.class);
         Assert.assertEquals(expectedMovie, actualMovie);
     }
@@ -85,7 +82,7 @@ public class MediaConverterTest
     public void getJsonOfMusic()
     {
         Music expectedMusic = new Music("name", "genre", "format", 1, "artist");
-        String musicJson = MediaConverter.toJson(expectedMusic);
+        String musicJson = Converter.toJson(expectedMusic);
         Music actualMusic = genson.deserialize(musicJson, Music.class);
         Assert.assertEquals(expectedMusic, actualMusic);
     }
@@ -94,7 +91,7 @@ public class MediaConverterTest
     public void getJsonOfMusicAsMedia()
     {
         Media expectedMusic = new Music("name", "genre", "format", 1, "artist");
-        String musicJson = MediaConverter.toJson(expectedMusic);
+        String musicJson = Converter.toJson(expectedMusic);
         Music actualMusic = genson.deserialize(musicJson, Music.class);
         Assert.assertEquals(expectedMusic, actualMusic);
     }
@@ -102,7 +99,7 @@ public class MediaConverterTest
     @Test
     public void getNullJsonForNullMedia()
     {
-        String mediaJson = MediaConverter.toJson((Media) null);
+        String mediaJson = Converter.toJson((Media) null);
         Assert.assertEquals("null", mediaJson);
     }
 
@@ -114,7 +111,7 @@ public class MediaConverterTest
         Movie movie = new Movie("name", "genre", "format", 1, "director", new ArrayList<>(Arrays.asList("writer1")), new ArrayList<>(Arrays.asList("star1")));
         ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(book, music, movie));
 
-        String mediasJson = MediaConverter.toJson(expectedMedias);
+        String mediasJson = Converter.toJson(expectedMedias);
 
         ArrayList<Media> actualMedias = genson.deserialize(mediasJson, new GenericType<ArrayList<Media>>() {});
 
@@ -124,7 +121,7 @@ public class MediaConverterTest
     @Test
     public void getJsonReturnsEmptyJsonForEmptyMediaList()
     {
-        String mediaJson = MediaConverter.toJson(new ArrayList<Media>());
+        String mediaJson = Converter.toJson(new ArrayList<Media>());
 
         ArrayList<Media> actualMedias = genson.deserialize(mediaJson, new GenericType<ArrayList<Media>>() {});
         Assert.assertEquals(new ArrayList<Media>(), actualMedias);

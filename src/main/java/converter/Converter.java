@@ -10,29 +10,29 @@ import model.Music;
 import java.util.ArrayList;
 
 /**
- * This class converts the media objects into other formats.
+ * This class converts the objects into other formats.
  *
  * @author
  * @version 1.0
  * @since   2018-12-19
  */
 
-public class MediaConverter
+public class Converter
 {
     private static Genson genson = new GensonBuilder().useConstructorWithArguments(true).addAlias("book", Book.class).addAlias("music", Music.class).addAlias("movie", Movie.class)
             .useRuntimeType(true).create();
     /**
-     * This method converts the media object into json format.
-     * @param mediaObject The object to convert.
+     * This method converts the object into json format.
+     * @param object The object to convert.
      * @return The Json representation of the object.
      */
-    public static String toJson(Object mediaObject)
+    public static String toJson(Object object)
     {
-        return genson.serialize(mediaObject);
+        return genson.serialize(object);
     }
 
     /**
-     * This method converts the media objects into json format.
+     * This method converts the objects into json format.
      * @param objects The objects to convert.
      * @return The Json representation of the objects.
      */

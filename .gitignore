@@ -83,7 +83,7 @@ gradle-app.setting
 !gradle-wrapper.jar
 
 #Avoid ignoring war
-!/build/libs/
+!build/libs/
 
 # Cache of project
 .gradletasknamecache

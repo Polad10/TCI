@@ -122,8 +122,11 @@ public class MediaConverterTest
     }
 
     @Test
-    public void getJsonReturnsNullForEmptyMediaList()
+    public void getJsonReturnsEmptyJsonForEmptyMediaList()
     {
+        String mediaJson = MediaConverter.toJson(new ArrayList<Media>());
 
+        ArrayList<Media> actualMedias = genson.deserialize(mediaJson, new GenericType<ArrayList<Media>>() {});
+        Assert.assertEquals(new ArrayList<Media>(), actualMedias);
     }
 }

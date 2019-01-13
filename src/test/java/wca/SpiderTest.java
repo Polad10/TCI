@@ -246,6 +246,32 @@ public class SpiderTest
         Assert.assertEquals(expectedMedias, actualMedias);
     }
 
+    @Test
+    @Parameters(method = "oneOfEachMediaTypeProvider")
+    public void searchBooksWithParticularBookPropertyReturnsAllNonDuplicateBooksWithRequiredProperty(List<Media> mediaList)
+    {
+        Media expectedMedia = mediaList.get(0);
+        String particularType = "book";
+        String property = "name";
+        String propertyValue = mediaList.get(0).getName();
+
+        searchParticularMediaTypeAndMediaPropertyReturnsAllNonDuplicateMediaWithRequiredPropertyReceivedFromDocumentExtractor(mediaList, Arrays.asList(expectedMedia), particularType, property, propertyValue);
+    }
+
+    private void searchParticularMediaTypeAndMediaPropertyReturnsAllNonDuplicateMediaWithRequiredPropertyReceivedFromDocumentExtractor(List<Media> allMedias, List<Media> expectedMedias,
+                                                                                                                                       String particularType, String property, String propertyValue)
+    {
+        DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
+        Spider spider = new Spider(documentExtractor);
+
+        when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2", "url3", "url4", "url5")));
+        when(documentExtractor.extractMedia()).thenReturn(allMedias.get(0), allMedias.get(0), allMedias.get(1), allMedias.get(1), allMedias.get(2), allMedias.get(2));
+
+        List<Media> actualMedias = spider.search("url", particularType, property, propertyValue);
+
+        Assert.assertEquals(expectedMedias, actualMedias);
+    }
+
     private Object[] fiveMixedTypeMediaProvider()
     {
         Book book1 = new Book("name1", "genre1", "format1", 1, new ArrayList<>(Collections.singletonList("author1")), "publisher1", "isbn1");

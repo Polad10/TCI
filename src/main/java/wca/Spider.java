@@ -154,10 +154,72 @@ public class Spider
      */
     public ArrayList<Media> search(String url, String mediaType, String property, String propertyValue)
     {
-        crawlLink(url);
-        Media media = documentExtractor.extractMedia();
+        ArrayList<Media> medias = new ArrayList<>();
 
-        return null;
+        do
+        {
+            if(pagesToVisit.isEmpty())
+            {
+                crawlLink(url);
+            }
+            else
+            {
+                crawlLink(nextUrl());
+            }
+
+            Media media = documentExtractor.extractMedia();
+
+            if(media != null && !medias.contains(media))
+            {
+                switch(property)
+                {
+                    case "name":
+                        if(media.getName().toLowerCase().equals(propertyValue.toLowerCase()))
+                        {
+                            if( (mediaType.equals("book") && media instanceof Book) ||
+                                    (mediaType.equals("music") && media instanceof Music) ||
+                                    (mediaType.equals("movie") && media instanceof Movie) )
+                            {
+                                medias.add(media);
+                            }
+                        }
+                        break;
+                    case "director":
+                        if(mediaType.equals("movie") && media instanceof Movie && ((Movie) media).getDirector().toLowerCase().equals(propertyValue.toLowerCase()))
+                        {
+                            medias.add(media);
+                        }
+                        break;
+                    case "writer":
+                        if(mediaType.equals("movie") && media instanceof Movie && ((Movie) media).getWriters().contains(propertyValue))
+                        {
+                            medias.add(media);
+                        }
+                        break;
+                    case "star":
+                        if(mediaType.equals("movie") && media instanceof Movie && ((Movie) media).getStars().contains(propertyValue))
+                        {
+                            medias.add(media);
+                        }
+                        break;
+                    case "artist":
+                        if(mediaType.equals("music") && media instanceof Music && ((Music) media).getArtist().toLowerCase().equals(propertyValue.toLowerCase()))
+                        {
+                            medias.add(media);
+                        }
+                        break;
+                    case "author":
+                        if(mediaType.equals("book") && media instanceof Book && ((Book) media).getAuthors().contains(propertyValue))
+                        {
+                            medias.add(media);
+                        }
+                        break;
+                }
+            }
+
+        } while(pagesVisited.size() < MAX_PAGES_TO_SEARCH && !pagesToVisit.isEmpty());
+
+        return medias;
     }
 
     /**

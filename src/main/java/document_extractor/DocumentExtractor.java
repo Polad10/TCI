@@ -85,9 +85,6 @@ public class DocumentExtractor {
         int year = Integer.parseInt(MovieAttri.get(3));
         String director = MovieAttri.get(3);
 
-
-
-
         String[] temp=MovieAttri.get(5).split(",");
         for(String part:temp)
         {
@@ -106,11 +103,14 @@ public class DocumentExtractor {
 
 
 
+
     public Music extractMusic()
     {
 
-       return  null;
+     return null;
     }
+
+
     public Book extractBook()
     {
 

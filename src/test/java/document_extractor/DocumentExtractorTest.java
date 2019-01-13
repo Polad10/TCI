@@ -157,4 +157,27 @@ public class DocumentExtractorTest
 
         Assert.assertEquals(documentExtractor.extractMovie().getStars().size(),6);
     }
+
+    @Test
+    public void ExttractMusicMustReturnTheRightNameOfArtist() throws DocumentExtractorExceptions
+    {
+        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/beethoven.html";
+        File input = new File(Path);
+        org.jsoup.nodes.Document local_html_doc = null;
+
+        try
+        {
+            local_html_doc = Jsoup.parse(input, "UTF-8", "");
+
+        }
+        catch (IOException ioe)
+        {
+            System.out.println("Error in loading file " + ioe);
+
+        }
+
+        DocumentExtractor documentExtractor = documentExtractor = new DocumentExtractor(local_html_doc);
+        String artist = "Ludwig van Beethoven";
+        Assert.assertEquals(documentExtractor.extractMusic().getArtist(),artist);
+    }
 }

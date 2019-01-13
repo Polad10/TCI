@@ -22,7 +22,6 @@ public class DocumentExtractorTest
         org.jsoup.nodes.Document mockDocu = Mockito.mock(Document.class);
 
         DocumentExtractor documentExtractor = new DocumentExtractor(null);
-
     }
 
     @Test
@@ -32,13 +31,12 @@ public class DocumentExtractorTest
         DocumentExtractor documentExtractor = new DocumentExtractor(mockDocu);
 
         Assert.assertEquals(documentExtractor.getDocument(),mockDocu);
-
     }
 
     @Test
     public void getLinksReturnsCorrectNumberOfLinksInDocument()throws DocumentExtractorExceptions
     {
-        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/index.html";
+        String Path = "src/main/sample_site/index.html";
         File input = new File(Path);
         org.jsoup.nodes.Document local_html_doc = null;
 
@@ -61,7 +59,7 @@ public class DocumentExtractorTest
     @Test
     public void extractMediaReturnsCorrectMediaFromDocumentBasedOnTheType() throws DocumentExtractorExceptions
     {
-        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/the_lord_of_the_rings.html";
+        String Path = "src/main/sample_site/details/the_lord_of_the_rings.html";
         File input = new File(Path);
         org.jsoup.nodes.Document local_html_doc = null;
 
@@ -88,7 +86,7 @@ public class DocumentExtractorTest
     @Test
     public void extractMediaReturnsNullWhenDocumentDoesNotContainMedia() throws DocumentExtractorExceptions
     {
-        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/index.html";
+        String Path = "src/main/sample_site/index.html";
         File input = new File(Path);
         org.jsoup.nodes.Document local_html_doc = null;
 
@@ -114,7 +112,7 @@ public class DocumentExtractorTest
     @Test
     public void ExtactMovieReturnMovieMustReturnMovieName()throws DocumentExtractorExceptions
     {
-        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/the_lord_of_the_rings.html";
+        String Path = "src/main/sample_site/details/the_lord_of_the_rings.html";
         File input = new File(Path);
         org.jsoup.nodes.Document local_html_doc = null;
 
@@ -138,7 +136,7 @@ public class DocumentExtractorTest
     @Test
     public void ExtactMovieMustReturnMovieObjectWithRightNumberOfStars() throws DocumentExtractorExceptions
     {
-        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/the_lord_of_the_rings.html";
+        String Path = "src/main/sample_site/details/the_lord_of_the_rings.html";
         File input = new File(Path);
         org.jsoup.nodes.Document local_html_doc = null;
 
@@ -161,7 +159,7 @@ public class DocumentExtractorTest
     @Test
     public void ExttractMusicMustReturnTheRightNameOfArtist() throws DocumentExtractorExceptions
     {
-        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/beethoven.html";
+        String Path = "src/main/sample_site/details/beethoven.html";
         File input = new File(Path);
         org.jsoup.nodes.Document local_html_doc = null;
 
@@ -185,7 +183,7 @@ public class DocumentExtractorTest
     @Test
     public void ExtractBookMustReturnSameTheRightISBN_number()  throws DocumentExtractorExceptions
     {
-        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/clean_code.html";
+        String Path = "src/main/sample_site/details/the_clean_coder.html";
         File input = new File(Path);
         org.jsoup.nodes.Document local_html_doc = null;
 

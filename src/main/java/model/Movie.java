@@ -15,6 +15,11 @@ public class Movie extends Media
     private String director;
     private ArrayList<String> writers;
     private ArrayList<String> stars;
+    private String name;
+    private String genre;
+    private int year;
+    private String format;
+
 
     /**
      * This is a Movie constructor.

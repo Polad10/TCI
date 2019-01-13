@@ -1,6 +1,7 @@
 package document_extractor;
 
 import model.Media;
+import model.Movie;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Assert;
@@ -58,9 +59,9 @@ public class DocumentExtractorTest
     }
 
     @Test
-    public void extractMediaReturnsCorrectMediaFromDocument() throws DocumentExtractorExceptions
+    public void extractMediaReturnsCorrectMediaFromDocumentBasedOnTheType() throws DocumentExtractorExceptions
     {
-        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/index.html";
+        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/the_lord_of_the_rings.html";
         File input = new File(Path);
         org.jsoup.nodes.Document local_html_doc = null;
 
@@ -76,12 +77,13 @@ public class DocumentExtractorTest
         }
 
         DocumentExtractor documentExtractor = documentExtractor = new DocumentExtractor(local_html_doc);
-        Media mockMedia = Mockito.mock(Media.class);
+        Movie mockMovie = Mockito.mock(Movie.class);
 
-
-        Assert.assertEquals(documentExtractor.extractMedia(),mockMedia);
+        Assert.assertNotNull(documentExtractor.extractMedia());
 
     }
+
+
 
     @Test
     public void extractMediaReturnsNullWhenDocumentDoesNotContainMedia()

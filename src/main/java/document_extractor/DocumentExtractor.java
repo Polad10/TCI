@@ -61,8 +61,7 @@ public class DocumentExtractor {
     public Movie extractMovie()
     {
 
-        Movie movie = new Movie("H","P","N",00,"K",null,null);
-        return movie;
+      return null;
     }
 
     public Music extractMusic()

@@ -110,4 +110,28 @@ public class DocumentExtractorTest
 
 
     }
+
+    @Test
+    public void ExtactMovieReturnMovieMustReturnMovieName()throws DocumentExtractorExceptions
+    {
+        String Path = "/Users/Bram/Desktop/TCI/GitHub/Git version 2/TCI/src/main/sample_site/details/the_lord_of_the_rings.html";
+        File input = new File(Path);
+        org.jsoup.nodes.Document local_html_doc = null;
+
+        try
+        {
+            local_html_doc = Jsoup.parse(input, "UTF-8", "");
+
+        }
+        catch (IOException ioe)
+        {
+            System.out.println("Error in loading file " + ioe);
+
+        }
+
+        DocumentExtractor documentExtractor = documentExtractor = new DocumentExtractor(local_html_doc);
+        String expectedName = "The Lord of the Rings: The Fellowship of the Ring";
+
+        Assert.assertNotNull(documentExtractor.extractMedia().getName(),expectedName);
+    }
 }

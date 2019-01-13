@@ -1,7 +1,9 @@
 package document_extractor;
 
+import model.Book;
 import model.Media;
 import model.Movie;
+import model.Music;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -63,6 +65,17 @@ public class DocumentExtractor {
         return movie;
     }
 
+    public Music extractMusic()
+    {
+
+       return  null;
+    }
+    public Book extractBook()
+    {
+
+       return null;
+    }
+
 
 
 
@@ -76,6 +89,16 @@ public class DocumentExtractor {
                 if (cat.equals("Movies"))
                 {
                    return  extractMovie();
+                }
+
+                if (cat.equals("Music"))
+                {
+                    return  extractMusic();
+                }
+
+                if (cat.equals("Books"))
+                {
+                    return  extractBook();
                 }
             }
         }

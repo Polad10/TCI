@@ -104,8 +104,9 @@ public class SpiderTest
     @Test
     public void searchAllMediaUsesGetLinksInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         spider.search("url");
 
@@ -115,8 +116,9 @@ public class SpiderTest
     @Test
     public void searchParticularMediaTypeUsesGetLinksInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         spider.search("url", "mediaType");
 
@@ -126,8 +128,9 @@ public class SpiderTest
     @Test
     public void searchParticularMediaTypeAndMediaPropertyUsesGetLinksInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         spider.search("url", "mediaType", "property", "propertyValue");
 
@@ -137,8 +140,9 @@ public class SpiderTest
     @Test
     public void searchAllMediaUsesExtractMediaInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         spider.search("url");
 
@@ -148,8 +152,9 @@ public class SpiderTest
     @Test
     public void searchParticularMediaTypeUsesExtractMediaInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         spider.search("url", "mediaType");
 
@@ -159,8 +164,9 @@ public class SpiderTest
     @Test
     public void searchParticularMediaTypeAndMediaPropertyUsesExtractMediaInDocumentExtractor() throws SpiderLegException, DocumentExtractorExceptions
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         spider.search("url", "mediaType", "property", "propertyValue");
 
@@ -171,8 +177,9 @@ public class SpiderTest
     @Parameters(method = "fiveMixedTypeMediaProvider")
     public void searchAllMediaReturnsAllNonDuplicateMediaReceivedFromDocumentExtractor(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2", "url3", "url4", "url5", "url6")));
         when(documentExtractor.extractMedia()).thenReturn(mediaList.get(0)).thenReturn(mediaList.get(1)).thenReturn(mediaList.get(2)).thenReturn(mediaList.get(3))
@@ -187,8 +194,9 @@ public class SpiderTest
     @Parameters(method = "fiveSingleTypeMediaProvider")
     public void searchParticularMediaTypeReturnsAllNonDuplicateMediaReceivedFromDocumentExtractor(List<Media> mediaList) throws SpiderLegException, DocumentExtractorExceptions
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2", "url3", "url4", "url5", "url6")));
         when(documentExtractor.extractMedia()).thenReturn(mediaList.get(0)).thenReturn(mediaList.get(1)).thenReturn(mediaList.get(2)).thenReturn(mediaList.get(3))
@@ -240,8 +248,9 @@ public class SpiderTest
     {
         ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(particularMedia));
 
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2")));
         when(documentExtractor.extractMedia()).thenReturn(allMedias.get(0), allMedias.get(1), allMedias.get(2));
@@ -291,8 +300,9 @@ public class SpiderTest
                                                                                                                                        String particularType, String property, String propertyValue)
                                                                                                                                         throws SpiderLegException, DocumentExtractorExceptions
     {
+        SpiderLeg spiderLeg = mock(SpiderLeg.class);
         DocumentExtractor documentExtractor = mock(DocumentExtractor.class);
-        Spider spider = new Spider(documentExtractor);
+        Spider spider = new Spider(spiderLeg, documentExtractor);
 
         when(documentExtractor.getLinks()).thenReturn(new ArrayList<>(Arrays.asList("url1", "url2", "url3", "url4", "url5")));
         when(documentExtractor.extractMedia()).thenReturn(allMedias.get(0), allMedias.get(0), allMedias.get(1), allMedias.get(1), allMedias.get(2), allMedias.get(2));

@@ -23,21 +23,21 @@ public class MediaConverter
             .useRuntimeType(true).create();
     /**
      * This method converts the media object into json format.
-     * @param mediaObject The media object to convert.
-     * @return The Json representation of the media object.
+     * @param mediaObject The object to convert.
+     * @return The Json representation of the object.
      */
-    public static String toJson(Media mediaObject)
+    public static String toJson(Object mediaObject)
     {
         return genson.serialize(mediaObject);
     }
 
     /**
      * This method converts the media objects into json format.
-     * @param mediaObjects The media objects to convert.
-     * @return The Json representation of the media objects.
+     * @param objects The objects to convert.
+     * @return The Json representation of the objects.
      */
-    public static String toJson(ArrayList<Media> mediaObjects)
+    public static String toJson(ArrayList<Object> objects)
     {
-        return genson.serialize(mediaObjects);
+        return genson.serialize(objects);
     }
 }

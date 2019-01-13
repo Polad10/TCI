@@ -61,7 +61,18 @@ public class DocumentExtractor {
     public Movie extractMovie()
     {
 
-      return null;
+        String name = null;
+
+        for (Element s : document.getElementsByClass("media-details"))
+        {
+            for( Element r : s.getElementsByTag("h1"))
+            {
+                name = r.text();
+            }
+
+        }
+
+        return new Movie(name,null,null,0000,null,null,null);
     }
 
     public Music extractMusic()

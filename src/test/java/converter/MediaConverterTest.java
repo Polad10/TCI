@@ -2,6 +2,7 @@ package converter;
 
 import static org.junit.Assert.*;
 
+import com.owlike.genson.GenericType;
 import com.owlike.genson.Genson;
 import com.owlike.genson.GensonBuilder;
 import com.owlike.genson.reflect.VisibilityFilter;
@@ -13,10 +14,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MediaConverterTest
 {
-    Genson genson = new GensonBuilder().useConstructorWithArguments(true).create();
+    private Genson genson = new GensonBuilder().useConstructorWithArguments(true).addAlias("book", Book.class).addAlias("music", Music.class).addAlias("movie", Movie.class)
+            .useRuntimeType(true).create();
 
     @Test
     public void getJsonOfBook()
@@ -106,7 +109,16 @@ public class MediaConverterTest
     @Test
     public void getJsonReturnsCorrectJsonForMediaList()
     {
+        Book book = new Book("name", "genre", "format", 1, new ArrayList<>(Arrays.asList("author1", "author2")), "publisher", "isbn");
+        Music music = new Music("name", "genre", "format", 1, "artist");
+        Movie movie = new Movie("name", "genre", "format", 1, "director", new ArrayList<>(Arrays.asList("writer1")), new ArrayList<>(Arrays.asList("star1")));
+        ArrayList<Media> expectedMedias = new ArrayList<>(Arrays.asList(book, music, movie));
 
+        String mediasJson = MediaConverter.toJson(expectedMedias);
+
+        ArrayList<Media> actualMedias = genson.deserialize(mediasJson, new GenericType<ArrayList<Media>>() {});
+
+        Assert.assertEquals(expectedMedias, actualMedias);
     }
 
     @Test

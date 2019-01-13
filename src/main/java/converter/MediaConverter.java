@@ -1,7 +1,11 @@
 package converter;
 
 import com.owlike.genson.Genson;
+import com.owlike.genson.GensonBuilder;
+import model.Book;
 import model.Media;
+import model.Movie;
+import model.Music;
 
 import java.util.ArrayList;
 
@@ -15,6 +19,8 @@ import java.util.ArrayList;
 
 public class MediaConverter
 {
+    private static Genson genson = new GensonBuilder().useConstructorWithArguments(true).addAlias("book", Book.class).addAlias("music", Music.class).addAlias("movie", Movie.class)
+            .useRuntimeType(true).create();
     /**
      * This method converts the media object into json format.
      * @param mediaObject The media object to convert.
@@ -22,7 +28,6 @@ public class MediaConverter
      */
     public static String toJson(Media mediaObject)
     {
-        Genson genson = new Genson();
         return genson.serialize(mediaObject);
     }
 
@@ -33,6 +38,6 @@ public class MediaConverter
      */
     public static String toJson(ArrayList<Media> mediaObjects)
     {
-        return null;
+        return genson.serialize(mediaObjects);
     }
 }

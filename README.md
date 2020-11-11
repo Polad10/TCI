@@ -1,6 +1,6 @@
 # TCI Project
 
-A developed Java program that crawls a website using TDD.
+Using TDD development to build a Java program that crawls a giving website.
 
 ## Installation
 
